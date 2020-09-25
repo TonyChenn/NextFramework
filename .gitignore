@@ -1,0 +1,21 @@
+<code># =============== #
+# Unity generated #
+# ==================== #
+Logs/
+Temp/
+Library/
+Obj/
+.vs/
+Assets/_Third/
+Assets/Gizmos/
+
+
+<code># =============== #
+# VS generated #
+# ==================== #
+.vs/
+*.sln
+*.suo
+*.tmp
+*.csproj
+.DS_Store
