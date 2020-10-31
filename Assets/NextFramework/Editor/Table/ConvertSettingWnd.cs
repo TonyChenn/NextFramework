@@ -9,7 +9,6 @@ using UnityEditor;
 using UnityEngine;
 public class ConvertSettingWnd : EditorWindow
 {
-    public const string GenCSharpScriptFolder = "/Scripts/Table/Define";
     public const string GenAssetFolder = "Assets/Asset/Table";
     public const string SettingFilePath = "/NextFramework/Editor/Table/setting.csv";
 
@@ -54,7 +53,7 @@ public class ConvertSettingWnd : EditorWindow
         EditorGUILayout.EndHorizontal();
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-        
+
         if (settingItemList == null) Init();
 
         //if (settingItemList == null || settingItemList.Count == 0) return;
@@ -208,14 +207,15 @@ public class ConvertSettingWnd : EditorWindow
             return;
         }
 
-        string path = Application.dataPath + GenAssetFolder;
+        if (!Directory.Exists(PathConfig.TableScriptObjectFolder))
+            Directory.CreateDirectory(PathConfig.TableScriptObjectFolder);
+        
         string assetPath = string.Format("{0}/{1}.asset", GenAssetFolder, item.NameWithoutExtension);
         var asset = AssetDatabase.LoadAssetAtPath(assetPath, dbType);
         if (asset == null)
         {
             var obj = ScriptableObject.CreateInstance(item.ConfigClassName);
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+
             AssetDatabase.CreateAsset(obj, assetPath);
             asset = AssetDatabase.LoadAssetAtPath(assetPath, dbType);
         }

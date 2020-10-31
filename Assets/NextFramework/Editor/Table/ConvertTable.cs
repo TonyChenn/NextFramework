@@ -63,79 +63,27 @@ public class ConvertTable : ScriptableObject
             if (!string.IsNullOrEmpty(excelData._commentList[i]))
                 sb.AppendFormat("({0})", excelData._commentList[i]);
             sb.AppendLine();
+            sb.AppendLine("\t/// <summary>");
             sb.Append("\tpublic ");
-            switch(excelData._typeNameList[i].ToLower())
+            switch (excelData._typeNameList[i].ToLower())
             {
-                case "string":  sb.Append("string ");   break;
-                case "bool":    sb.Append("bool ");     break;
-                case "int":
-                case "int32":   sb.Append("int ");      break;
-                case "int64":
-                case "long":    sb.Append("long ");     break;
-                case "datetime":sb.Append("DateTime "); break;
+                case "string"   : sb.Append("string "); break;
+                case "bool"     : sb.Append("bool "); break;
+                case "int"      :
+                case "int32"    : sb.Append("int "); break;
+                case "uint32"   : sb.Append("uint "); break;
+                case "int64"    :
+                case "long"     : sb.Append("long "); break;
+                case "datetime" : sb.Append("DateTime "); break;
             }
             sb.Append(excelData._fieldNameList[i]);
             sb.AppendLine(";");
-            sb.AppendLine("\t/// <summary>");
         }
 
 
-        StringBuilder builder = new StringBuilder(String_Config_Template);
+        StringBuilder builder = new StringBuilder(NextFramework.TemplateString.String_Config_Template);
         builder.Replace("{FILE_NAME}", excelData.tableName);
         builder.Replace("{ITEM_CLASS_VARIABLE}", sb.ToString());
         return builder.ToString();
     }
-
-
-
-    /// <summary>
-    /// Excel转CSharp脚本模板
-    /// </summary>
-    const string String_Config_Template = @"/// <summary>
-/// 本文件中的代码为生成的代码，不允许手动修改
-/// </summary>
-using System;
-using UnityEngine;
-
-[Serializable]
-public partial class Item_{FILE_NAME}
-{
-{ITEM_CLASS_VARIABLE}
-}
-
-public partial class Config_{FILE_NAME} : ScriptableObject
-{
-    public Item_{FILE_NAME}[] Array;
-    public static Config_{FILE_NAME} Singleton { get; private set; }
-
-    public static void Init()
-    {
-#if UNITY_EDITOR
-        if (GameConfig.Singlton.UseLocalAsset)
-            LoadFromLocal();
-        else
-            LoadFromBundle();
-#else
-            LoadFromBundle();
-#endif
-    }
-
-    static void LoadFromBundle()
-    {
-        var item = new NormalAssetItem(""/Table/{FILE_NAME}.u"");
-        item.Load(() =>
-        {
-            Singleton = item.AssetObj as Config_{FILE_NAME};
-        });
-    }
-
-#if UNITY_EDITOR
-    static void LoadFromLocal()
-{
-    string path = ""/Asset/Table/{FILE_NAME}.asset"";
-    var obj = UnityEditor.AssetDatabase.LoadAssetAtPath<Config_{FILE_NAME}>(path);
-    Singleton = obj as Config_{FILE_NAME};
-}
-#endif
-}";
 }
