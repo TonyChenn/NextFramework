@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using UnityEngine;
 
 namespace NextFramework
 {
@@ -72,6 +73,31 @@ namespace NextFramework
             }
         }
         public static void Dispose() { mInstance = null; }
+    }
+
+
+    public abstract class MonoSinglton<T> : MonoBehaviour, ISingleton where T : MonoBehaviour
+    {
+        static T mInstance = null;
+
+        public static T Singlton()
+        {
+            if (mInstance == null)
+            {
+                GameObject go = new GameObject();
+                go.AddComponent<T>();
+                go.name = typeof(T).ToString();
+            }
+            return mInstance;
+        }
+
+        public virtual void InitSingleton() { }
+
+        protected virtual void Dispose()
+        {
+            mInstance = null;
+            Destroy(this);
+        }
     }
 
 }
