@@ -1,22 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace NextFramework.UIKit
 {
-    public class UIWndData
-    {
-        public object object_data;
-        public int int_data;
-        public string str_data;
-        public double double_data;
-    }
     public abstract class UIWndBase : MonoBehaviour
     {
         protected Transform mTrans;
         protected GameObject mObj;
-        protected UIType mUIID;
-        protected UIType mPreUIID;
+        protected UIType mUIType;
+        protected UIType mPreUIType;
 
         public Transform CachedTransform
         {
@@ -36,7 +30,7 @@ namespace NextFramework.UIKit
                 return mObj;
             }
         }
-        public UIType UIID { get { return mUIID; } }
+        public UIType UIType { get { return mUIType; } }
 
         protected abstract void SetUIType();
         protected virtual void Awake()
