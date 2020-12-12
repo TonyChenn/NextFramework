@@ -82,7 +82,8 @@ namespace NextFramework
             if (Selection.activeObject == null) return;
 
             string folderPath = Path.Combine(PathConfig.UIScriptsFolder, packageName);
-            FolderHelper.CreateFolder(folderPath);
+            folderPath.CreateFolderIfNotExist();
+
             string scriptPath = Path.Combine(folderPath, prefabName, ".cs");
             if (File.Exists(scriptPath)) return;
 

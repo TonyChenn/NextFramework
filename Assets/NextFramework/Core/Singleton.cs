@@ -80,15 +80,20 @@ namespace NextFramework
     {
         static T mInstance = null;
 
-        public static T Singlton()
+        public static T Singlton
         {
-            if (mInstance == null)
+            get
             {
-                GameObject go = new GameObject();
-                go.AddComponent<T>();
-                go.name = typeof(T).ToString();
+                if (mInstance == null)
+                {
+                    string name = typeof(T).ToString();
+                    GameObject go = GameObject.Find(name) ?? new GameObject();
+                    T copoment = go.GetComponent<T>() ?? go.AddComponent<T>();
+                    go.name = name;
+                    mInstance = copoment;
+                }
+                return mInstance;
             }
-            return mInstance;
         }
 
         public virtual void InitSingleton() { }
@@ -97,6 +102,11 @@ namespace NextFramework
         {
             mInstance = null;
             Destroy(this);
+        }
+
+        private void OnDestroy()
+        {
+            Dispose();
         }
     }
 

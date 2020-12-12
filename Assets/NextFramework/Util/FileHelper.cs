@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-public class FileHelper
+public static class FileHelper
 {
     public static string ReadFile(string path)
     {
@@ -16,6 +16,36 @@ public class FileHelper
         if (!File.Exists(path))
             File.Create(path).Dispose();
         File.WriteAllText(path, content);
+    }
+
+    /// <summary>
+    /// 获取文件名（包含拓展名）
+    /// </summary>
+    public static string GetFileName(string filePath)
+    {
+        filePath = filePath.Trim().Replace("\\", "/");
+        return filePath.Substring(filePath.LastIndexOf('/') + 1);
+    }
+
+    /// <summary>
+    /// 获取文件名（不包含拓展名）
+    /// </summary>
+    public static string GetFileNameWithoutExtention(string filePath)
+    {
+        filePath = GetFileName(filePath);
+        if(filePath.Contains("."))
+            return filePath.Substring(0, filePath.LastIndexOf('.'));
+        return filePath;
+    }
+
+    /// <summary>
+    /// 删除文件如果已存在
+    /// </summary>
+    /// <param name="filePath"></param>
+    public static void DeleteFileIfExist(string filePath)
+    {
+        if (File.Exists(filePath))
+            File.Delete(filePath);
     }
 
     public static void WriteUITypeFile(string filePath, string content = "")
@@ -40,11 +70,48 @@ public class FileHelper
         }
     }
 }
-public class FolderHelper
+public static class FolderHelper
 {
-    public static void CreateFolder(string folderPath)
+    /// <summary>
+    /// 创建文件夹
+    /// </summary>
+    /// <param name="folderPath"></param>
+    public static void CreateFolderIfNotExist(this string folderPath)
     {
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
+    }
+    /// <summary>
+    /// 删除文件夹及文件夹中文件
+    /// </summary>
+    /// <param name="folderPath"></param>
+    public static void DeleteFolderIfExist(this string folderPath)
+    {
+        if (Directory.Exists(folderPath))
+            Directory.Delete(folderPath, true);
+    }
+
+    /// <summary>
+    /// 清空文件夹中所有文件
+    /// </summary>
+    public static void ClearFolder(this string folderPath)
+    {
+        if (Directory.Exists(folderPath))
+            Directory.Delete(folderPath, true);
+
+        Directory.CreateDirectory(folderPath);
+    }
+
+    /// <summary>
+    /// 打开文件夹
+    /// </summary>
+    /// <param name="folderPath"></param>
+    public static void OpenFolder(string folderPath)
+    {
+#if UNITY_STANDALONE_OSX
+        System.Diagnostics.Process.Start("open", folderPath);
+#elif UNITY_STANDALONE_WIN
+        System.Diagnostics.Process.Start("explorer.exe", folderPath);
+#endif
     }
 }
