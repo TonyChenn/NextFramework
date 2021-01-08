@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\chentc\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\chentc\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_NextFramework.-945800579.00" t="ExcludeRecursive" />
+    <e p="D:\Privite\NextFramework" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="DrawLine.cs" t="Include" />
+        <e p="NextFramework" t="Include">
+          <e p="AudioKit" t="Include">
+            <e p="AudioManger.cs" t="Include" />
+          </e>
+          <e p="Core" t="Include">
+            <e p="CSharpEx" t="Include">
+              <e p="CopomentEx.cs" t="Include" />
+            </e>
+            <e p="Factory" t="Include">
+              <e p="CustomObjectFactory.cs" t="Include" />
+              <e p="DefaultObjectFactory.cs" t="Include" />
+              <e p="IObjectFactory.cs" t="Include" />
+              <e p="NonPublicObjectFactory.cs" t="Include" />
+              <e p="ObjectFactory.cs" t="Include" />
+            </e>
+            <e p="Messenger" t="Include">
+              <e p="Callback.cs" t="Include" />
+              <e p="Messenger.cs" t="Include" />
+              <e p="MessengerEventDef.cs" t="Include" />
+            </e>
+            <e p="ObjectPool" t="Include">
+              <e p="IPool.cs" t="Include" />
+              <e p="IPoolable.cs" t="Include" />
+              <e p="IpoolType.cs" t="Include" />
+              <e p="ObjectPool.cs" t="Include" />
+              <e p="Pool.cs" t="Include" />
+            </e>
+            <e p="RefCounter" t="Include">
+              <e p="IRefCounter.cs" t="Include" />
+            </e>
+            <e p="Singleton.cs" t="Include" />
+            <e p="TemplateString.cs" t="Include" />
+          </e>
+          <e p="Editor" t="Include">
+            <e p="AssetBundle" t="Include">
+              <e p="AssetBundleWnd.cs" t="Include" />
+            </e>
+            <e p="EditorPrefsHelper.cs" t="Include" />
+            <e p="GUISkinHelper.cs" t="Include" />
+            <e p="NextFrameworkInitWnd.cs" t="Include" />
+            <e p="PackageManger" t="Include">
+              <e p="IModel.cs" t="Include" />
+              <e p="IPackageModel.cs" t="Include" />
+              <e p="PackageMangerWnd.cs" t="Include" />
+            </e>
+            <e p="SettingWnd.cs" t="Include" />
+            <e p="Table" t="Include">
+              <e p="ConfigFile.cs" t="Include" />
+              <e p="ConvertSettingWnd.cs" t="Include" />
+              <e p="ConvertTable.cs" t="Include" />
+              <e p="DecodeExcel.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Extention" t="Include">
+            <e p="UGUIEx" t="Include">
+              <e p="ScrollView" t="Include">
+                <e p="ItemPool.cs" t="Include" />
+                <e p="ScrollView.cs" t="Include" />
+                <e p="ScrollViewItem.cs" t="Include" />
+              </e>
+              <e p="Text" t="Include">
+                <e p="ClickTest.cs" t="Include" />
+                <e p="Editor" t="Include">
+                  <e p="HyperTextEditor.cs" t="Include" />
+                </e>
+                <e p="HyperText.cs" t="Include" />
+              </e>
+              <e p="Tween" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="EventDelegateEditor.cs" t="Include" />
+                  <e p="PropertyReferenceDrawer.cs" t="Include" />
+                  <e p="TweenAlphaEditor.cs" t="Include" />
+                  <e p="TweenColorEditor.cs" t="Include" />
+                  <e p="TweenFOVEditor.cs" t="Include" />
+                  <e p="TweenHeightEditor.cs" t="Include" />
+                  <e p="TweenKitEditorTools.cs" t="Include" />
+                  <e p="TweenKitSettings.cs" t="Include" />
+                  <e p="TweenOrthoSizeEditor.cs" t="Include" />
+                  <e p="TweenPositionEditor.cs" t="Include" />
+                  <e p="TweenRotationEditor.cs" t="Include" />
+                  <e p="TweenScaleEditor.cs" t="Include" />
+                  <e p="TweenVolumeEditor.cs" t="Include" />
+                  <e p="TweenWidthEditor.cs" t="Include" />
+                  <e p="UITweenEditor.cs" t="Include" />
+                </e>
+                <e p="internal" t="Include">
+                  <e p="AnimationOrTween.cs" t="Include" />
+                  <e p="EventDelegate.cs" t="Include" />
+                  <e p="PropertyReference.cs" t="Include" />
+                  <e p="TweenKitTools.cs" t="Include" />
+                </e>
+                <e p="Tween" t="Include">
+                  <e p="TweenAlpha.cs" t="Include" />
+                  <e p="TweenColor.cs" t="Include" />
+                  <e p="TweenFill.cs" t="Include" />
+                  <e p="TweenFOV.cs" t="Include" />
+                  <e p="TweenHeight.cs" t="Include" />
+                  <e p="TweenNumber.cs" t="Include" />
+                  <e p="TweenOrthoSize.cs" t="Include" />
+                  <e p="TweenPosition.cs" t="Include" />
+                  <e p="TweenRotation.cs" t="Include" />
+                  <e p="TweenScale.cs" t="Include" />
+                  <e p="TweenTransform.cs" t="Include" />
+                  <e p="TweenVolume.cs" t="Include" />
+                  <e p="TweenWidth.cs" t="Include" />
+                  <e p="UITweener.cs" t="Include" />
+                </e>
+                <e p="TweenEx" t="Include">
+                  <e p="ButtonScale.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+          <e p="GameConfig.cs" t="Include" />
+          <e p="Guidence" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="CircleGuidence.cs" t="Include" />
+              <e p="GuidenceManger.cs" t="Include" />
+              <e p="RectGuidence.cs" t="Include" />
+            </e>
+            <e p="Shader" t="Include">
+              <e p="UI-Guide-Circle.shader" t="Include" />
+              <e p="UI-Guide-Rect.shader" t="Include" />
+            </e>
+          </e>
+          <e p="PathConfig.cs" t="Include" />
+          <e p="ResKit" t="Include">
+            <e p="lib" t="Include">
+              <e p="unity_http" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="Http.cs" t="Include" />
+                  <e p="HttpUtils.cs" t="Include" />
+                  <e p="Service" t="Include">
+                    <e p="HttpResponse.cs" t="Include" />
+                    <e p="IHttpRequest.cs" t="Include" />
+                    <e p="IHttpService.cs" t="Include" />
+                    <e p="Unity" t="Include">
+                      <e p="IUpdateProgress.cs" t="Include" />
+                      <e p="UnityHttpRequest.cs" t="Include" />
+                      <e p="UnityHttpService.cs" t="Include" />
+                    </e>
+                  </e>
+                </e>
+              </e>
+            </e>
+          </e>
+          <e p="UIKit" t="Include">
+            <e p="Editor" t="Include">
+              <e p="UIKitEditor.cs" t="Include" />
+            </e>
+            <e p="LittleRedPoint.cs" t="Include" />
+            <e p="UIManger.cs" t="Include" />
+            <e p="UIType.cs" t="Include" />
+            <e p="UIWndBase.cs" t="Include" />
+          </e>
+          <e p="Util" t="Include">
+            <e p="AssetUtil.cs" t="Include" />
+            <e p="FileHelper.cs" t="Include" />
+            <e p="Helper.cs" t="Include" />
+            <e p="PlayerPrefsHelper.cs" t="Include" />
+            <e p="Serialization.cs" t="Include" />
+            <e p="TimeHelper.cs" t="Include" />
+          </e>
+          <e p="XLua" t="Include">
+            <e p="Editor" t="Include">
+              <e p="GenLuaEditor.cs" t="Include" />
+            </e>
+            <e p="LuaCompoment.cs" t="Include" />
+            <e p="XLuaHelper.cs" t="Include" />
+            <e p="XLuaManger.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Table" t="Include">
+            <e p="Define" t="Include">
+              <e p="Config_t_item.cs" t="Include" />
+            </e>
+          </e>
+          <e p="UIScripts" t="Include">
+            <e p="Animal.cs" t="Include" />
+            <e p="Test.cs" t="Include" />
+          </e>
+        </e>
+        <e p="SuperScrollView" t="Include">
+          <e p="Demo" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="BottomToTopDemoScript.cs" t="Include" />
+              <e p="ChangeItemHeightDemoScript.cs" t="Include" />
+              <e p="ChatMsgDataSourceMgr.cs" t="Include" />
+              <e p="ChatMsgListViewDemoScript.cs" t="Include" />
+              <e p="ClickAndLoadMoreDemoScript.cs" t="Include" />
+              <e p="DataSourceMgr.cs" t="Include" />
+              <e p="DeleteItemDemoScript.cs" t="Include" />
+              <e p="DragChangSizeScript.cs" t="Include" />
+              <e p="FPSDisplay.cs" t="Include" />
+              <e p="GridViewDeleteItemDemoScript.cs" t="Include" />
+              <e p="GridViewDemoScript.cs" t="Include" />
+              <e p="GridViewSampleDemo.cs" t="Include" />
+              <e p="HorizontalGalleryDemoScript.cs" t="Include" />
+              <e p="LeftToRightDemoScript.cs" t="Include" />
+              <e p="ListItem0.cs" t="Include" />
+              <e p="ListItem1.cs" t="Include" />
+              <e p="ListItem10.cs" t="Include" />
+              <e p="ListItem11.cs" t="Include" />
+              <e p="ListItem12.cs" t="Include" />
+              <e p="ListItem13.cs" t="Include" />
+              <e p="ListItem14.cs" t="Include" />
+              <e p="ListItem15.cs" t="Include" />
+              <e p="ListItem16.cs" t="Include" />
+              <e p="ListItem2.cs" t="Include" />
+              <e p="ListItem3.cs" t="Include" />
+              <e p="ListItem4.cs" t="Include" />
+              <e p="ListItem5.cs" t="Include" />
+              <e p="ListItem6.cs" t="Include" />
+              <e p="ListItem7.cs" t="Include" />
+              <e p="ListItem8.cs" t="Include" />
+              <e p="ListItem9.cs" t="Include" />
+              <e p="MenuSceneScript.cs" t="Include" />
+              <e p="PageViewDemoScript.cs" t="Include" />
+              <e p="PullToLoadMoreDemoScript.cs" t="Include" />
+              <e p="PullToRefreshDemoScript.cs" t="Include" />
+              <e p="ResManager.cs" t="Include" />
+              <e p="ResponsiveGridViewDemoScript.cs" t="Include" />
+              <e p="RightToLeftDemoScript.cs" t="Include" />
+              <e p="RotateScript.cs" t="Include" />
+              <e p="SpinDatePickerDemoScript.cs" t="Include" />
+              <e p="TopToBottomDemoScript.cs" t="Include" />
+              <e p="TreeViewDataSourceMgr.cs" t="Include" />
+              <e p="TreeViewDemoScript.cs" t="Include" />
+              <e p="TreeViewItemCountMgr.cs" t="Include" />
+              <e p="TreeViewWithStickyHeadDemoScript.cs" t="Include" />
+              <e p="VerticalGalleryDemoScript.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Editor" t="Include">
+            <e p="LoopListViewEditor2.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="ClickEventListener.cs" t="Include" />
+            <e p="ItemPosMgr.cs" t="Include" />
+            <e p="LoopListView2.cs" t="Include" />
+            <e p="LoopListViewItem2.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Test.cs" t="Include" />
+        <e p="XLua" t="Include">
+          <e p="CHANGELOG.txt" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="ExampleConfig.cs" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="perf" t="Include">
+              <e p="memory.lua.txt" t="Include" />
+              <e p="profiler.lua.txt" t="Include" />
+            </e>
+            <e p="XLua" t="Include">
+              <e p="util.lua.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Src" t="Include">
+            <e p="CodeEmit.cs" t="Include" />
+            <e p="CopyByValue.cs" t="Include" />
+            <e p="DelegateBridge.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="Generator.cs" t="Include" />
+              <e p="Hotfix.cs" t="Include" />
+              <e p="LinkXmlGen" t="Include">
+                <e p="LinkXmlGen.cs" t="Include" />
+                <e p="LinkXmlGen.tpl.txt" t="Include" />
+              </e>
+              <e p="Template" t="Include">
+                <e p="LuaClassWrap.tpl.txt" t="Include" />
+                <e p="LuaClassWrapGCM.tpl.txt" t="Include" />
+                <e p="LuaDelegateBridge.tpl.txt" t="Include" />
+                <e p="LuaDelegateWrap.tpl.txt" t="Include" />
+                <e p="LuaEnumWrap.tpl.txt" t="Include" />
+                <e p="LuaEnumWrapGCM.tpl.txt" t="Include" />
+                <e p="LuaInterfaceBridge.tpl.txt" t="Include" />
+                <e p="LuaRegister.tpl.txt" t="Include" />
+                <e p="LuaRegisterGCM.tpl.txt" t="Include" />
+                <e p="LuaWrapPusher.tpl.txt" t="Include" />
+                <e p="PackUnpack.tpl.txt" t="Include" />
+                <e p="TemplateCommon.lua.txt" t="Include" />
+              </e>
+              <e p="TemplateRef.cs" t="Include" />
+            </e>
+            <e p="GenAttributes.cs" t="Include" />
+            <e p="GenericDelegateBridge.cs" t="Include" />
+            <e p="InternalGlobals.cs" t="Include" />
+            <e p="LuaBase.cs" t="Include" />
+            <e p="LuaDLL.cs" t="Include" />
+            <e p="LuaEnv.cs" t="Include" />
+            <e p="LuaException.cs" t="Include" />
+            <e p="LuaFunction.cs" t="Include" />
+            <e p="LuaTable.cs" t="Include" />
+            <e p="MethodWarpsCache.cs" t="Include" />
+            <e p="ObjectCasters.cs" t="Include" />
+            <e p="ObjectPool.cs" t="Include" />
+            <e p="ObjectTranslator.cs" t="Include" />
+            <e p="ObjectTranslatorPool.cs" t="Include" />
+            <e p="RawObject.cs" t="Include" />
+            <e p="SignatureLoader.cs" t="Include" />
+            <e p="StaticLuaCallbacks.cs" t="Include" />
+            <e p="TemplateEngine" t="Include">
+              <e p="TemplateEngine.cs" t="Include" />
+            </e>
+            <e p="TypeExtensions.cs" t="Include" />
+            <e p="Utils.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="NextFramework.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
