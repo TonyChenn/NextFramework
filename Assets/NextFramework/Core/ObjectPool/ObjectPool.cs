@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NextFramework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class ObjectPool<T> : Pool<T> where T : IPoolable, new()
     static ObjectPool<T> mInstance;
     public ObjectPool()
     {
-        factory = new ObjectFactory<T>();
+        factory = new DefaultObjectFactory<T>();
     }
     public static ObjectPool<T> Singlton
     {
@@ -65,7 +66,7 @@ public class ObjectPool<T> : Pool<T> where T : IPoolable, new()
         {
             for (int i = Count; i < initCount; i++)
             {
-                Recycle(new T());
+                Recycle(Alloc());
             }
         }
     }
