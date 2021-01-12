@@ -1,5 +1,5 @@
 ﻿
-namespace NextFramework.Messenger
+namespace NextFramework
 {
     /// <summary>
     /// This class is used to define all eventId.

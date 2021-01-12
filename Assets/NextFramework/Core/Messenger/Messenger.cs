@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NextFramework.Messenger
+namespace NextFramework
 {
     public enum MessengerMode : byte
     {
