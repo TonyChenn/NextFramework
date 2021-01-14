@@ -38,6 +38,12 @@ public class PathConfig
     public static string NextFrameworkPath = RootPath + "/NextFramework";
 
     /// <summary>
+    /// TextStyle, ColorStyle
+    /// </summary>
+    public static string TextStyleFolder = RootPath + "/Asset/TextStyle";
+    public static string ColorStyleFolder = RootPath + "/Asset/ColorStyle";
+
+    /// <summary>
     /// 所有面板配置信息
     /// </summary>
     public static string UIPanelsJsonPath= NextFrameworkPath + "/UIKit/panels.json";

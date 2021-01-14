@@ -22,31 +22,28 @@ namespace NextFramework
         static void StartInit()
         {
             //UI脚本文件夹
-            if (!Directory.Exists(PathConfig.UIScriptsFolder))
-                Directory.CreateDirectory(PathConfig.UIScriptsFolder);
+            PathConfig.UIScriptsFolder.CreateFolderIfNotExist();
             //UI预设文件夹
-            if (!Directory.Exists(PathConfig.UIPrefabPath))
-                Directory.CreateDirectory(PathConfig.UIPrefabPath);
+            PathConfig.UIPrefabPath.CreateFolderIfNotExist();
 
             //StreammingAssets文件夹
-            if (!Directory.Exists(Application.streamingAssetsPath))
-                Directory.CreateDirectory(Application.streamingAssetsPath);
+            Application.streamingAssetsPath.CreateFolderIfNotExist();
             //Resources 文件夹
             string resourcesPath = PathConfig.RootPath + "/Resources";
-            if (!Directory.Exists(resourcesPath))
-                Directory.CreateDirectory(resourcesPath);
+            resourcesPath.CreateFolderIfNotExist();
 
             //创建UIType脚本
             string UITypePath = PathConfig.NextFrameworkPath + "/UIKit/UIType.cs";
             FileHelper.WriteUITypeFile(UITypePath, "");
 
             //创建表格相关文件夹
-            if (!Directory.Exists(PathConfig.TableDefScriptFolder))
-                Directory.CreateDirectory(PathConfig.TableDefScriptFolder);
-            if (!Directory.Exists(PathConfig.TableCustomScriptFolder))
-                Directory.CreateDirectory(PathConfig.TableCustomScriptFolder);
-            if(!Directory.Exists(PathConfig.TableScriptObjectFolder))
-                Directory.CreateDirectory(PathConfig.TableScriptObjectFolder);
+            PathConfig.TableDefScriptFolder.CreateFolderIfNotExist();
+            PathConfig.TableCustomScriptFolder.CreateFolderIfNotExist();
+            PathConfig.TableScriptObjectFolder.CreateFolderIfNotExist();
+
+            //TextStyle,ColorStyle
+            PathConfig.TextStyleFolder.CreateFolderIfNotExist();
+            PathConfig.ColorStyleFolder.CreateFolderIfNotExist();
 
             AssetDatabase.Refresh();
         }
