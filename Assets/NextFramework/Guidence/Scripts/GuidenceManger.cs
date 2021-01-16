@@ -1,48 +1,70 @@
-﻿using NextFramework;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GuidenceManger : MonoBehaviour
+namespace NextFramework
 {
     public enum GuideType { Circle, Rect }
 
-    CircleGuidence mCircleGuidence;
-    RectGuidence mRectGuidence;
-
-    private void Awake()
+    public class GuidenceManger : MonoBehaviour, ICanvasRaycastFilter
     {
-        if (mCircleGuidence == null)
-            mCircleGuidence = gameObject.AddComponent<CircleGuidence>();
+        [SerializeField] GuideType mGuideType = GuideType.Circle;
+        [Range(0, 10)]
+        [SerializeField] float mShrinkTime = .3f;
+        [Range(1, 10)]
+        [SerializeField] float mBorder = 10f;
 
-        mRectGuidence = GetComponent<RectGuidence>();
-        if (mRectGuidence == null)
-            mRectGuidence = gameObject.AddComponent<RectGuidence>();
-    }
+        CircleGuidence mCircleGuidence;
+        RectGuidence mRectGuidence;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="type">遮罩类型</param>
-    /// <param name="target">遮罩目标</param>
-    public void ShowGuidence(GuideType type,Image target,float timer = .2f)
-    {
-        switch (type)
+        MaskableGraphic mTarget;
+
+        private void Awake()
         {
-            case GuideType.Circle:
-                mCircleGuidence.Show(target, timer);
-                break;
-            case GuideType.Rect:
-                mRectGuidence.Show(target, timer);
-                break;
-            default:
-                break;
+            if (mCircleGuidence == null)
+                mCircleGuidence = gameObject.AddComponent<CircleGuidence>();
+
+            mRectGuidence = GetComponent<RectGuidence>();
+            if (mRectGuidence == null)
+                mRectGuidence = gameObject.AddComponent<RectGuidence>();
         }
-    }
 
-    public void Close()
-    {
+        /// <summary>
+        /// 显示遮罩
+        /// </summary>
+        /// <param name="type">遮罩类型</param>
+        /// <param name="target">遮罩目标</param>
+        public void ShowGuidence(MaskableGraphic target)
+        {
+            ShowGuidence(mGuideType, target, mBorder, mShrinkTime);
+        }
+        public void ShowGuidence(GuideType guideType, MaskableGraphic target, float border, float shrinkTime)
+        {
+            mTarget = target;
 
+            switch (guideType)
+            {
+                case GuideType.Circle:
+                    mCircleGuidence.Show(target, border, shrinkTime);
+                    break;
+                case GuideType.Rect:
+                    mRectGuidence.Show(target, border, shrinkTime);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void Close()
+        {
+
+        }
+        #region Event Filter
+        public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)
+        {
+            if (mTarget == null) return false;
+            return RectTransformUtility.RectangleContainsScreenPoint(mTarget.rectTransform, sp, eventCamera);
+        }
+        #endregion
     }
 }
+
