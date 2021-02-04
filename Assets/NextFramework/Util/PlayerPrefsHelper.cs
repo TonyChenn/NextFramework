@@ -17,7 +17,9 @@ public enum PlayerPrefsType
 }
 public class PlayerPrefsHelper
 {
+#if UNITY_EDITOR
     [MenuItem("NextFramework/Prefs/Clear All PlayerPrefs")]
+#endif
     public static void ClearAll()
     {
         PlayerPrefs.DeleteAll();

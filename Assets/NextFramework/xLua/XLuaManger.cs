@@ -19,7 +19,7 @@ public class XLuaManger : IDisposable
         mLuaEnv = new LuaEnv();
         LuaEnv.CustomLoader loader;
 #if UNITY_EDITOR
-        if (GameConfig.UseLocalAsset)
+        if (GameConfig.Singlton.UseLocalAsset)
             loader = OriginLoader;
         else
             loader = BundleLoader;

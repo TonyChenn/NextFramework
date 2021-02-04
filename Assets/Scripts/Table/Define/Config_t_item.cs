@@ -30,7 +30,7 @@ public partial class Config_t_item : ScriptableObject
     public static void Init()
     {
 #if UNITY_EDITOR
-        if (GameConfig.UseLocalAsset)
+        if (GameConfig.Singlton.UseLocalAsset)
             LoadFromLocal();
         else
             LoadFromBundle();

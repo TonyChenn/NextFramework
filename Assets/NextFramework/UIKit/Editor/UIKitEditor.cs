@@ -15,8 +15,7 @@ namespace NextFramework
         static bool CanGenConfig()
         {
             GameObject obj = Selection.activeObject as GameObject;
-            if (obj == null) return false;
-            else return true;
+            return obj != null;
         }
 
         [MenuItem("Assets/生成配置",false)]

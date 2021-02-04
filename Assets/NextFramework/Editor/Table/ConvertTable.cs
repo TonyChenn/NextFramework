@@ -7,6 +7,7 @@ using OfficeOpenXml;
 using System.Diagnostics;
 using System.Text;
 using NextFramework.Util;
+using NextFramework;
 
 public class ConvertTable : ScriptableObject
 {
@@ -36,7 +37,7 @@ public class ConvertTable : ScriptableObject
         {
             if (EditorUtility.DisplayDialog("提示", "配表路径有问题，请检查！！", "这就去"))
             {
-                EditorWindow.GetWindow<SettingWnd>();
+                EditorWindow.GetWindow<BuildAssetBundleWnd>();
             }
         }
     }

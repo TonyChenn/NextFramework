@@ -29,7 +29,7 @@ namespace NextFramework.UIKit
         public UIManger()
         {
 #if UNITY_EDITOR
-            if (GameConfig.UseLocalAsset)
+            if (GameConfig.Singlton.UseLocalAsset)
                 LoadResFromAsset();
             else
                 LoadResFromAssetBundle();

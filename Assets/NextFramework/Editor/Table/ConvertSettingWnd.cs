@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using NextFramework;
+
 public class ConvertSettingWnd : EditorWindow
 {
     public const string GenAssetFolder = "Assets/Asset/Table";
@@ -19,7 +21,7 @@ public class ConvertSettingWnd : EditorWindow
     GUIStyle GreenButtonStyle;
 
     [MenuItem("NextFramework/ConvertTable &c")]
-    static void SettingConvertExcel()
+    public static void SettingConvertExcel()
     {
         GetWindow<ConvertSettingWnd>(false, "转换配表设置", true);
     }
@@ -77,7 +79,7 @@ public class ConvertSettingWnd : EditorWindow
         }
 
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("转换选中"))
+        if (GUILayout.Button("转换选中", GUILayout.Height(50)))
         {
             var list = new List<SettingItem>();
             foreach (var item in settingItemList)
@@ -90,7 +92,7 @@ public class ConvertSettingWnd : EditorWindow
             else
                 EditorUtility.DisplayDialog("提示", "请至少勾选一项", "好吧");
         }
-        if (GUILayout.Button("转换全部"))
+        if (GUILayout.Button("转换全部",GUILayout.Height(50)))
         {
             if (settingItemList.Count > 0)
                 ConvertTable.GenCSharp(settingItemList);
@@ -98,7 +100,7 @@ public class ConvertSettingWnd : EditorWindow
             WriteSetting();
             AssetDatabase.Refresh();
         }
-        if (GUILayout.Button("导入选中数据"))
+        if (GUILayout.Button("导入选中数据", GUILayout.Height(50)))
         {
             var list = new List<SettingItem>();
             foreach (var item in settingItemList)
@@ -113,7 +115,7 @@ public class ConvertSettingWnd : EditorWindow
             else
                 EditorUtility.DisplayDialog("提示", "请至少勾选一项", "好吧");
         }
-        if (GUILayout.Button("导入所有数据"))
+        if (GUILayout.Button("导入所有数据", GUILayout.Height(50)))
         {
             var list = new List<SettingItem>();
             foreach (var item in settingItemList)
@@ -124,6 +126,11 @@ public class ConvertSettingWnd : EditorWindow
             ImportData(list);
         }
         EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Build Table AssetBundle"))
+        {
+            ABTool.Singlton.BuildAssetBundleTotal(true, BuildABType.Table);
+        }
     }
 
     public void Init()
@@ -207,9 +214,8 @@ public class ConvertSettingWnd : EditorWindow
             return;
         }
 
-        if (!Directory.Exists(PathConfig.TableScriptObjectFolder))
-            Directory.CreateDirectory(PathConfig.TableScriptObjectFolder);
-        
+        (Application.dataPath + PathConfig.TableScriptObjectFolder).CreateFolderIfNotExist();
+
         string assetPath = string.Format("{0}/{1}.asset", GenAssetFolder, item.NameWithoutExtension);
         var asset = AssetDatabase.LoadAssetAtPath(assetPath, dbType);
         if (asset == null)

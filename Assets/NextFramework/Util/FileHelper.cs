@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 public static class FileHelper
 {
@@ -33,7 +34,7 @@ public static class FileHelper
     public static string GetFileNameWithoutExtention(string filePath)
     {
         filePath = GetFileName(filePath);
-        if(filePath.Contains("."))
+        if (filePath.Contains("."))
             return filePath.Substring(0, filePath.LastIndexOf('.'));
         return filePath;
     }
@@ -46,6 +47,23 @@ public static class FileHelper
     {
         if (File.Exists(filePath))
             File.Delete(filePath);
+    }
+
+    /// <summary>
+    /// 获取文件夹下所有文件
+    /// </summary>
+    public static FileInfo[] GetAllFiles(string folderPath, string filter = "*", SearchOption option = SearchOption.AllDirectories)
+    {
+        if (FolderHelper.ExistFolder(folderPath))
+        {
+            DirectoryInfo info = new DirectoryInfo(folderPath);
+            return GetAllFiles(info, filter, option);
+        }
+        return null;
+    }
+    public static FileInfo[] GetAllFiles(DirectoryInfo folderInfo, string filter = "*", SearchOption option = SearchOption.AllDirectories)
+    {
+        return folderInfo.GetFiles(filter, option);
     }
 
     public static void WriteUITypeFile(string filePath, string content = "")
@@ -113,5 +131,46 @@ public static class FolderHelper
 #elif UNITY_STANDALONE_WIN
         System.Diagnostics.Process.Start("explorer.exe", folderPath);
 #endif
+    }
+
+    /// <summary>
+    /// 判断文件夹是否存在
+    /// </summary>
+    public static bool ExistFolder(string path)
+    {
+        return Directory.Exists(path);
+    }
+
+    /// <summary>
+    /// 获取所有子文件夹
+    /// </summary>
+    /// <returns></returns>
+    public static DirectoryInfo[] GetSubFolders(string folderPath)
+    {
+        if (ExistFolder(folderPath))
+        {
+            DirectoryInfo info = new DirectoryInfo(folderPath);
+            return info.GetDirectories();
+        }
+        return null;
+    }
+}
+
+public static class PathHelper
+{
+    /// <summary>
+    /// 获取标准转义符的地址
+    /// </summary>
+    public static string GetStandardPath(this string path)
+    {
+        return path.Replace("\\", "/").TrimEnd('/');
+    }
+
+    /// <summary>
+    /// 返回以"Asset"开头的地址
+    /// </summary>
+    public static string GetUnityPath(this string fullPath)
+    {
+        return fullPath.GetStandardPath().Replace(UnityEngine.Application.dataPath, "Assets");
     }
 }
