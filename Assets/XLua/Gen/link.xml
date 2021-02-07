@@ -1,0 +1,11 @@
+﻿
+
+<linker>
+
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="LuaCompoment" preserve="all"/>
+		<type fullname="Direction" preserve="all"/>
+		
+	</assembly>
+
+</linker>

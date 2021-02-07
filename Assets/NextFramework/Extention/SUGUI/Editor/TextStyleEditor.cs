@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace NextFramework
+namespace NextFramework.SUGUI
 {
     [CustomEditor(typeof(TextStyle))]
     public class TextStyleEditor : Editor

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameConfig : MonoBehaviour
 {
-    [SerializeField] public static bool UseLocalAsset = true;
+    [SerializeField] public bool UseLocalAsset = true;
     [SerializeField] public PackageType CurPackageType = PackageType.Dev;
 
     public static GameConfig _instance = null;

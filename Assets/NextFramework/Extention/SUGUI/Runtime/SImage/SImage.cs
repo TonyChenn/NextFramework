@@ -26,7 +26,6 @@ namespace NextFramework.SUGUI
         Quarter,
     }
 
-    [AddComponentMenu("SUI/SImage", 11)]
     public class SImage : Image
     {
         [Tooltip("运行时优化掉为精灵为空的图片")]

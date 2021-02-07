@@ -188,6 +188,43 @@ namespace NextFramework.SUGUI
         {
             return GUILayout.Button(text, "DropDown", GUILayout.Width(76f));
         }
+
+        static public GameObject SelectedRoot(bool createIfMissing)
+        {
+            GameObject go = Selection.activeGameObject;
+
+            // Only use active objects
+            if (go != null && !go.activeInHierarchy) go = null;
+
+            // Try to find a panel
+            Canvas canvas = (go != null) ? go.GetComponentInParent<Canvas>() : null;
+
+            // No selection? Try to find the root automatically
+            if (canvas == null)
+            {
+                Canvas[] cans = GameObject.FindObjectsOfType<Canvas>();
+                if (cans.Length > 0) go = cans[0].gameObject;
+            }
+
+            if (createIfMissing && go == null)
+            {
+                // No object specified -- find the first panel
+                if (go == null)
+                {
+                    Canvas can = GameObject.FindObjectOfType<Canvas>();
+                    if (can != null) go = can.gameObject;
+                }
+
+                // No UI present -- create a new one
+                if (go == null)
+                {
+
+                }
+                    //SUGUIMenu.CreateCanvas(null);
+                    //UICreateNewUIWizard.CreateNewUI(UICreateNewUIWizard.CameraType.Simple2D);
+            }
+            return go;
+        }
     }
 }
 

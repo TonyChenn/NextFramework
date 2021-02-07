@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace NextFramework
+namespace NextFramework.SUGUI
 {
     [CreateAssetMenu(fileName = "TextStyle", menuName ="New TextStyle", order =1)]
     public class TextStyle : ScriptableObject
