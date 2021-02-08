@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: common
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 0
+      compressionQuality: 0
+      maxTextureSize: 0
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: fd337dffaf05f4e4fba03ce99b920d9e, type: 3}
+    totalSpriteSurfaceArea: 41017
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9d7e32b0a91de9140976001bba95ff64, type: 3}
+  - {fileID: 21300000, guid: fedc5ce1a5d75824fabf2057162feb3d, type: 3}
+  - {fileID: 21300000, guid: 6d3b9722ee12c2847bf235281ce496ca, type: 3}
+  - {fileID: 21300000, guid: e9703693b690f544baaef3323645c902, type: 3}
+  - {fileID: 21300000, guid: e629de05136911e41931a60704099d66, type: 3}
+  - {fileID: 21300000, guid: 741b3b751bc60b748a40c363384617e2, type: 3}
+  - {fileID: 21300000, guid: 57ca0b953b19a5840b59f320c5926691, type: 3}
+  - {fileID: 21300000, guid: 255d00f596d62714caaa3e53f60959ed, type: 3}
+  - {fileID: 21300000, guid: f0b512f513b294143abc3e5f6b87c28a, type: 3}
+  - {fileID: 21300000, guid: 36f525f5400f5a64c8dc959bac96a1aa, type: 3}
+  - {fileID: 21300000, guid: f9d53aa6be1f5c44b95e49a8751fefda, type: 3}
+  - {fileID: 21300000, guid: 89d54ca74307b8e41958726d2040682e, type: 3}
+  - {fileID: 21300000, guid: e505e2182353e7a44ab166ac37df8d14, type: 3}
+  - {fileID: 21300000, guid: c1d69c99de774b443b0d344acc61c994, type: 3}
+  - {fileID: 21300000, guid: e1d0857a7edc471439544b5d8aeb6e79, type: 3}
+  - {fileID: 21300000, guid: 3208c2ecc24cbaa4d96072bff09f453b, type: 3}
+  - {fileID: 21300000, guid: 8a38343e1f1895d4a90f997195eab1f3, type: 3}
+  - {fileID: 21300000, guid: e5f05fbe3c62ae946b2adfcf7f748538, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - icon_coin
+  - bg_1
+  - icon_
+  - icon_3
+  - btn_bg_yellow
+  - btn_bg_white
+  - bg_2
+  - toggle_on
+  - redpoint
+  - icon_2
+  - bg_dialog
+  - icon_floow
+  - icon_gem
+  - icon_5
+  - btn_back
+  - icon_1
+  - bg_grey
+  - toggle_off
+  m_Tag: common
+  m_IsVariant: 0
