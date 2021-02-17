@@ -185,7 +185,7 @@ namespace NextFramework.SUGUI
         {
             if (SUGUISetting.atlas != null)
             {
-                Show(delegate (string sel) { /*NGUIEditorTools.SelectSprite(sel);*/ });
+                Show(delegate (string sel) { SUGUIEditorTool.SelectSprite(sel); });
             }
         }
 
@@ -204,6 +204,8 @@ namespace NextFramework.SUGUI
             if (ob != null && pro != null && atlas != null)
             {
                 SpriteSelector comp = ScriptableWizard.DisplayWizard<SpriteSelector>("Select a Sprite");
+                SUGUISetting.atlas = atlas;
+                SUGUISetting.selectedSprite = pro.hasMultipleDifferentValues ? null : pro.stringValue;
                 comp.mSprite = null;
                 comp.mObject = ob;
                 comp.mProperty = pro;

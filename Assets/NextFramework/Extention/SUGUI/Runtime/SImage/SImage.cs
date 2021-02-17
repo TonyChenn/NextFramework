@@ -29,10 +29,31 @@ namespace NextFramework.SUGUI
     public class SImage : Image
     {
         [Tooltip("运行时优化掉为精灵为空的图片")]
-        [SerializeField] bool m_CullNoneSprite = false;
+        //[SerializeField] bool m_CullNoneSprite = false;
         [SerializeField] SpriteAtlas m_SpriteAtlas;
         [SerializeField] string m_SpriteName;
         [SerializeField] MirrorType m_MirrorType = MirrorType.None;
+
+        public SpriteAtlas Atlas
+        {
+            get { return m_SpriteAtlas; }
+            set { m_SpriteAtlas = value; }
+        }
+        public string SpriteName
+        {
+            get { return m_SpriteName; }
+            set
+            {
+                if (string.IsNullOrEmpty(value)) return;
+
+                Sprite temp = Atlas.GetSprite(value);
+                if (temp)
+                {
+                    m_SpriteName = value;
+                    sprite = temp;
+                }
+            }
+        }
 
         public MirrorType MirrorType
         {
@@ -49,11 +70,6 @@ namespace NextFramework.SUGUI
         }
         protected override void OnPopulateMesh(VertexHelper toFill)
         {
-            if ((overrideSprite == null && m_CullNoneSprite))
-            {
-                toFill.Clear();
-                return;
-            }
             base.OnPopulateMesh(toFill);
         }
 

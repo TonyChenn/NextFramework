@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 namespace NextFramework
 {
-    [RequireComponent(typeof(Button))]
     [AddComponentMenu("NextFrameWork/TweenKit/Button Scale")]
     public class ButtonScale : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
     {

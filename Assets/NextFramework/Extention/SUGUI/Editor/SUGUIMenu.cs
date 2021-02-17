@@ -9,30 +9,27 @@ namespace NextFramework.SUGUI
 {
     public class SUGUIMenu : MonoBehaviour
     {
-        [MenuItem("NextFramework/SUGUI/Create SText", false,11)]
-        public static void CreateSText()
+        [MenuItem("NextFramework/SUGUI/Create SText", false, 11)]
+        public static SText CreateSText()
         {
-            GameObject go;
+            SText txt = SUGUISetting.AddText(getParent());
+            txt.rectTransform.sizeDelta = new Vector2(200, 120);
+            return txt;
         }
 
         [MenuItem("NextFramework/SUGUI/Create SImage", false, 12)]
-        public static void CreateSImage()
+        public static Image CreateSImage()
         {
-            GameObject parent = Selection.activeGameObject;
-            if(parent==null)
-            {
-                //parent= 
-            }
-
-            GameObject go = new GameObject("SImage");
-            go.AddComponent<SImage>();
-
+            Image image = SUGUISetting.AddImage(getParent());
+            return image;
         }
 
         [MenuItem("NextFramework/SUGUI/Create SButton", false, 13)]
-        public static void CreateSButton()
+        public static SButton CreateSButton()
         {
+            SButton btn = SUGUISetting.AddButton(getParent());
 
+            return btn;
         }
 
         [MenuItem("NextFramework/SUGUI/Create SInputFied", false, 14)]
@@ -44,7 +41,7 @@ namespace NextFramework.SUGUI
         [MenuItem("NextFramework/SUGUI/Create SListView", false, 15)]
         public static void CreateSListView()
         {
-            
+
         }
 
         [MenuItem("NextFramework/SUGUI/Create SGridView", false, 16)]
@@ -64,19 +61,13 @@ namespace NextFramework.SUGUI
         {
 
         }
-
+        [MenuItem("NextFramework/SUGUI/Create Canvas", false, 11)]
         public static void CreateCanvas()
         {
-            GameObject go = new GameObject("Canvas");
-            Canvas canvas = go.AddComponent<Canvas>();
-            go.AddComponent<CanvasScaler>();
-            go.AddComponent<GraphicRaycaster>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-            
+            SUGUISetting.AddCanvas(null);
         }
 
-        public static void SetParentAndAlign(GameObject parent,GameObject child)
+        public static void SetParentAndAlign(GameObject parent, GameObject child)
         {
             if (parent == null)
                 return;
@@ -106,6 +97,20 @@ namespace NextFramework.SUGUI
             Transform t = go.transform;
             for (int i = 0; i < t.childCount; i++)
                 SetLayerRecursively(t.GetChild(i).gameObject, layer);
+        }
+
+        /// <summary>
+        /// return create new obj's parent
+        /// if select a gameObject return it,or return Cnavas
+        /// </summary>
+        /// <returns></returns>
+        static GameObject getParent()
+        {
+            GameObject parent = Selection.activeGameObject;
+            if (parent == null)
+                parent = SUGUISetting.GetCanvas(parent).gameObject;
+
+            return parent;
         }
     }
 }

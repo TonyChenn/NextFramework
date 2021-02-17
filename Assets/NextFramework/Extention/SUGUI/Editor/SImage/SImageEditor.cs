@@ -21,7 +21,6 @@ namespace NextFramework.SUGUI
     /// </summary>
     public class SImageEditor : GraphicEditor
     {
-        SerializedProperty m_CullNoneSprite;
         SerializedProperty m_SpriteAtlas;
         SerializedProperty m_SpriteName;
 
@@ -47,7 +46,6 @@ namespace NextFramework.SUGUI
         protected override void OnEnable()
         {
             base.OnEnable();
-            m_CullNoneSprite = serializedObject.FindProperty("m_CullNoneSprite");
             m_SpriteAtlas = serializedObject.FindProperty("m_SpriteAtlas");
             m_SpriteName = serializedObject.FindProperty("m_SpriteName");
 
@@ -94,7 +92,6 @@ namespace NextFramework.SUGUI
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            EditorGUILayout.PropertyField(m_CullNoneSprite);
 
             SpriteGUI();
             AppearanceControlsGUI();
@@ -138,7 +135,8 @@ namespace NextFramework.SUGUI
         {
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(m_SpriteAtlas);
-            SUGUIEditorTool.DrawAdvancedSpriteField(m_SpriteAtlas.objectReferenceValue as SpriteAtlas,
+            SelectAtlas();
+            SUGUIEditorTool.DrawAtlasSpriteField(m_SpriteAtlas.objectReferenceValue as SpriteAtlas,
                                                     m_SpriteName.stringValue, SelectSprite);
             if (EditorGUI.EndChangeCheck())
             {
@@ -294,6 +292,12 @@ namespace NextFramework.SUGUI
             }
 #endif
             SUGUISetting.selectedSprite = spriteName;
+        }
+
+        private void SelectAtlas()
+        {
+            if (m_SpriteAtlas.objectReferenceValue != null)
+                SUGUISetting.atlas = m_SpriteAtlas.objectReferenceValue as SpriteAtlas;
         }
     }
 }

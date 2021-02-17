@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using NextFramework;
 using NextFramework.SUGUI;
-
+using UnityEngine.U2D;
 
 public interface IEditorPrefs
 {
@@ -64,16 +64,8 @@ public class EditorPrefsHelper : NormalSingleton<EditorPrefsHelper>, IEditorPref
     /// </summary>
     public static string ExcelFolder
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_excelfolder))
-                return EditorPrefs.GetString(key_excelfolder);
-            return "";
-        }
-        set
-        {
-            EditorPrefs.SetString(key_excelfolder, value);
-        }
+        get { return GetString(key_excelfolder, ""); }
+        set { SetString(key_excelfolder, value); }
     }
 
     /// <summary>
@@ -81,48 +73,24 @@ public class EditorPrefsHelper : NormalSingleton<EditorPrefsHelper>, IEditorPref
     /// </summary>
     public static bool DontUseSteammingAssetFolder
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_dontusesttreammingasset))
-                return EditorPrefs.GetBool(key_dontusesttreammingasset);
-            return false;
-        }
-        set
-        {
-            EditorPrefs.SetBool(key_dontusesttreammingasset, value);
-        }
+        get { return GetBool(key_dontusesttreammingasset, false); }
+        set { SetBool(key_dontusesttreammingasset, value); }
     }
     /// <summary>
     /// 当前选择的AB包路径
     /// </summary>
     public static string ABPackFolder
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_abfolder))
-                return EditorPrefs.GetString(key_abfolder);
-            return "";
-        }
-        set
-        {
-            EditorPrefs.SetString(key_abfolder, value);
-        }
+        get { return GetString(key_abfolder, ""); }
+        set { SetString(key_abfolder, value); }
     }
     /// <summary>
     /// 当前打包平台
     /// </summary>
     public static BuildTarget CurBuildTarget
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_build_platform_type))
-                return (BuildTarget)EditorPrefs.GetInt(key_build_platform_type);
-            return BuildTarget.NoTarget;
-        }
-        set
-        {
-            EditorPrefs.SetInt(key_build_platform_type, (int)value);
-        }
+        get { return (BuildTarget)GetInt(key_build_platform_type, (int)BuildTarget.NoTarget); }
+        set { SetEnum(key_build_platform_type, value); }
     }
 
     /// <summary>
@@ -130,33 +98,17 @@ public class EditorPrefsHelper : NormalSingleton<EditorPrefsHelper>, IEditorPref
     /// </summary>
     public static string PackageKitJson
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_packagekit_json))
-                return EditorPrefs.GetString(key_packagekit_json);
-            return null;
-        }
-        set
-        {
-            EditorPrefs.SetString(key_build_platform_type, value);
-        }
+        get { return GetString(key_packagekit_json, ""); }
+        set { SetString(key_build_platform_type, value); }
     }
 
     /// <summary>
     /// 当前包版本
     /// </summary>
-    public static double PackageKitVersion
+    public static float PackageKitVersion
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_packagekit_version))
-                return double.Parse(EditorPrefs.GetString(key_packagekit_version));
-            return 0f;
-        }
-        set
-        {
-            EditorPrefs.SetString(key_packagekit_version, value.ToString());
-        }
+        get { return GetFloat(key_packagekit_version, 0f); }
+        set { SetFloat(key_packagekit_version, value); }
     }
 
     /// <summary>
@@ -164,32 +116,16 @@ public class EditorPrefsHelper : NormalSingleton<EditorPrefsHelper>, IEditorPref
     /// </summary>
     public static bool BuildXLua
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_build_xlua))
-                return EditorPrefs.GetBool(key_build_xlua);
-            return true;
-        }
-        set
-        {
-            EditorPrefs.SetBool(key_build_xlua, value);
-        }
+        get { return GetBool(key_build_xlua, true); }
+        set { SetBool(key_build_xlua, value); }
     }
     /// <summary>
     /// 打包重新生成配表
     /// </summary>
     public static bool BuildConvertTable
     {
-        get
-        {
-            if (EditorPrefs.HasKey(key_build_table))
-                return EditorPrefs.GetBool(key_build_table);
-            return true;
-        }
-        set
-        {
-            EditorPrefs.SetBool(key_build_table, value);
-        }
+        get { return GetBool(key_build_table, true); }
+        set { SetBool(key_build_table, value); }
     }
 
     #region Generic Get and Set methods

@@ -3,15 +3,13 @@ using UnityEngine;
 using UnityEditor.U2D;
 using UnityEngine.U2D;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace NextFramework.SUGUI
 {
-    public static class SUGUIEditorTool
+    public class SUGUIEditorTool
     {
         static Texture2D mBackdropTex;
-
-        static string mLastSprite = null;
-        static string mEditedName = null;
 
         /// <summary>
         /// 加载Asset
@@ -61,20 +59,11 @@ namespace NextFramework.SUGUI
             return result;
         }
 
-        /// <summary>
-        /// Create an undo point for the specified objects.
-        /// </summary>
-        public static void RegisterUndo(string name, params Object[] objects)
+        public static void SelectSprite(string spriteName)
         {
-            if (objects != null && objects.Length > 0)
+            if (SUGUISetting.atlas != null)
             {
-                Undo.RecordObjects(objects, name);
-
-                foreach (Object obj in objects)
-                {
-                    if (obj == null) continue;
-                    EditorUtility.SetDirty(obj);
-                }
+                SUGUISetting.selectedSprite = spriteName;
             }
         }
 
@@ -152,44 +141,7 @@ namespace NextFramework.SUGUI
             }
         }
 
-        public static void DrawAdvancedSpriteField(SpriteAtlas atlas, string spriteName,
-                                                   SpriteSelector.Callback callback,
-                                                   params GUILayoutOption[] options)
-        {
-            if (atlas == null) return;
-
-            // Give the user a warning if there are no sprites in the atlas
-            List<string> spriteList = GetAllSprites(atlas);
-            if (spriteList.Count == 0)
-            {
-                EditorGUILayout.HelpBox("No sprites found", MessageType.Warning);
-                return;
-            }
-
-            // Sprite selection drop-down list
-            GUILayout.BeginHorizontal();
-            {
-                if (SUGUIEditorTool.DrawPrefixButton("Sprite"))
-                {
-                    SUGUISetting.atlas = atlas;
-                    SUGUISetting.selectedSprite = spriteName;
-                    SpriteSelector.Show(callback);
-                }
-                GUILayout.BeginHorizontal();
-                GUILayout.Label(spriteName, "HelpBox", GUILayout.Height(18f));
-                //NGUIEditorTools.DrawPadding();
-                GUILayout.EndHorizontal();
-            }
-            GUILayout.EndHorizontal();
-        }
-
-
-        static public bool DrawPrefixButton(string text)
-        {
-            return GUILayout.Button(text, "DropDown", GUILayout.Width(76f));
-        }
-
-        static public GameObject SelectedRoot(bool createIfMissing)
+        public static GameObject SelectedRoot(bool createIfMissing)
         {
             GameObject go = Selection.activeGameObject;
 
@@ -220,11 +172,158 @@ namespace NextFramework.SUGUI
                 {
 
                 }
-                    //SUGUIMenu.CreateCanvas(null);
-                    //UICreateNewUIWizard.CreateNewUI(UICreateNewUIWizard.CameraType.Simple2D);
+                //SUGUIMenu.CreateCanvas(null);
+                //UICreateNewUIWizard.CreateNewUI(UICreateNewUIWizard.CameraType.Simple2D);
             }
             return go;
         }
+
+        /// <summary>
+        /// Create an undo point for the specified objects.
+        /// </summary>
+        public static void RegisterUndo(string name, Object obj) { if (obj != null) UnityEditor.Undo.RecordObject(obj, name); }
+        public static void RegisterUndo(string name, params Object[] objects) { if (objects != null && objects.Length > 0) UnityEditor.Undo.RecordObjects(objects, name); }
+
+        #region Draw Field
+        /// <summary>
+        /// 按钮
+        /// </summary>
+        public static bool DrawPrefixButton(string text)
+        {
+            return DrawPrefixButton(text, GUILayout.Width(76f));
+        }
+        public static bool DrawPrefixButton(string text, params GUILayoutOption[] options)
+        {
+            return GUILayout.Button(text, "DropDown", options);
+        }
+
+        /// <summary>
+        /// 下拉框
+        /// </summary>
+        public static int DrawList(int index, string[] list, params GUILayoutOption[] options)
+        {
+            return EditorGUILayout.Popup(index, list, "DropDown", options);
+        }
+        public static int DrawList(string text, int index, string[] list, params GUILayoutOption[] options)
+        {
+            return EditorGUILayout.Popup(text, index, list, "DropDown", options);
+        }
+
+        public static void DrawObjectField<T>(SerializedProperty property, string text)
+        {
+            EditorGUILayout.ObjectField(property, typeof(T), new GUIContent(text));
+        }
+
+        public static void DrawAtlasSpriteField(SpriteAtlas atlas, string spriteName,
+                                           SpriteSelector.Callback callback,
+                                           params GUILayoutOption[] options)
+        {
+            if (atlas == null) return;
+
+            // Give the user a warning if there are no sprites in the atlas
+            List<string> spriteList = GetAllSprites(atlas);
+            if (spriteList.Count == 0)
+            {
+                EditorGUILayout.HelpBox("No sprites found", MessageType.Warning);
+                return;
+            }
+
+            // Sprite selection drop-down list
+            GUILayout.BeginHorizontal();
+            {
+                if (DrawPrefixButton("Sprite"))
+                {
+                    SUGUISetting.atlas = atlas;
+                    SUGUISetting.selectedSprite = spriteName;
+                    SpriteSelector.Show(callback);
+                }
+                GUILayout.BeginHorizontal();
+                GUILayout.Label(spriteName, "HelpBox", GUILayout.Height(18f));
+                //NGUIEditorTools.DrawPadding();
+                GUILayout.EndHorizontal();
+            }
+            GUILayout.EndHorizontal();
+        }
+
+        #endregion
+
+        #region  GUID->obj or obj->GUID
+        /// <summary>
+        /// 返回object的GUID
+        /// </summary>
+        public static string ObjectToGUID(Object obj)
+        {
+            string path = AssetDatabase.GetAssetPath(obj);
+            return (!string.IsNullOrEmpty(path)) ? AssetDatabase.AssetPathToGUID(path) : null;
+        }
+
+        static MethodInfo s_GetInstanceIDFromGUID;
+
+        /// <summary>
+        /// 通过GUID获取object
+        /// </summary>
+        public static Object GUIDToObject(string guid)
+        {
+            if (string.IsNullOrEmpty(guid)) return null;
+
+            if (s_GetInstanceIDFromGUID == null)
+            {
+                var type = typeof(AssetDatabase);
+
+                // Unity 3, 4, 5 and 2017
+                s_GetInstanceIDFromGUID = type.GetMethod("GetInstanceIDFromGUID", BindingFlags.Static | BindingFlags.NonPublic);
+
+                // Unity 2018+
+                if (s_GetInstanceIDFromGUID == null) s_GetInstanceIDFromGUID = type.GetMethod("GetMainAssetInstanceID", BindingFlags.Static | BindingFlags.NonPublic);
+                if (s_GetInstanceIDFromGUID == null) return null;
+            }
+
+            int id = (int)s_GetInstanceIDFromGUID.Invoke(null, new object[] { guid });
+            if (id != 0) return EditorUtility.InstanceIDToObject(id);
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            if (string.IsNullOrEmpty(path)) return null;
+            return AssetDatabase.LoadAssetAtPath(path, typeof(Object));
+        }
+
+        /// <summary>
+        /// 通过GUID获取指定类型object
+        /// </summary>
+        public static T GUIDToObject<T>(string guid) where T : Object
+        {
+            Object obj = GUIDToObject(guid);
+            if (obj == null) return null;
+
+            System.Type objType = obj.GetType();
+            if (objType == typeof(T) || objType.IsSubclassOf(typeof(T))) return obj as T;
+
+            if (objType == typeof(GameObject) && typeof(T).IsSubclassOf(typeof(Component)))
+            {
+                GameObject go = obj as GameObject;
+                return go.GetComponent(typeof(T)) as T;
+            }
+            return null;
+        }
+        #endregion
+
+        #region Get Property Value
+        public static int GetIntPropertyValue(SerializedProperty property)
+        {
+            return property.intValue;
+        }
+        public static float GetFloatPropertyValue(SerializedProperty property)
+        {
+            return property.floatValue;
+        }
+        public static int GetEnumPropertyValue(SerializedProperty property)
+        {
+            return property.enumValueIndex;
+        }
+
+        public static bool GetBoolPropertyValue(SerializedProperty property)
+        {
+            return property.boolValue;
+        }
+        #endregion
     }
 }
 
