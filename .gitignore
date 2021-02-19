@@ -19,3 +19,8 @@ Assets/Gizmos/
 *.tmp
 *.csproj
 .DS_Store
+
+<code># =============== #
+# Rider generated #
+# ==================== #
+.idea/
