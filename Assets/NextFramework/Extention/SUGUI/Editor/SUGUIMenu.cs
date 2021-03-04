@@ -61,6 +61,11 @@ namespace NextFramework.SUGUI
         {
 
         }
+        [MenuItem("NextFramework/SUGUI/Create SMask", false, 6)]
+        public static void CreateMask()
+        {
+            SUGUISetting.AddMask(getParent());
+        }
         [MenuItem("NextFramework/SUGUI/Create Canvas", false, 11)]
         public static void CreateCanvas()
         {

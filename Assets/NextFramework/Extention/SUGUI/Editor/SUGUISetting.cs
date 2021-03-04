@@ -80,6 +80,20 @@ public class SUGUISetting:IEditorPrefs
         return img.gameObject.AddComponent<SButton>();
     }
 
+    // Create SMask
+    public static SMask AddMask(GameObject gameObject)
+    {
+        SMask mask = UGUITools.AddChild<SMask>(gameObject);
+        mask.name = "SMask";
+        mask.raycastTarget = true;
+        mask.rectTransform.anchorMin = Vector2.zero;
+        mask.rectTransform.anchorMax = Vector2.one;
+        mask.rectTransform.sizeDelta = Vector2.zero;    
+        UGUITools.ResetGameObject(mask.gameObject);
+
+        return mask;
+    }
+
 
     // Get Canvas
     public static Canvas GetCanvas(GameObject gameObject = null)
