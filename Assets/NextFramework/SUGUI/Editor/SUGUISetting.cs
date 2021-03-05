@@ -7,7 +7,6 @@ using NextFramework.SUGUI;
 public class SUGUISetting:IEditorPrefs
 {
     #region Add UICompoment
-
     // Create Canvas
     public static Canvas AddCanvas(GameObject gameObject)
     {
@@ -46,9 +45,9 @@ public class SUGUISetting:IEditorPrefs
         txt.textStyle = textStyle;
         txt.text = "New Text";
         txt.color = Color.black;
+        txt.raycastTarget = false;
         txt.rectTransform.sizeDelta = new Vector2(120, 200);
         UGUITools.ResetGameObject(txt.gameObject);
-
         return txt;
     }
 
@@ -58,28 +57,40 @@ public class SUGUISetting:IEditorPrefs
         SImage image = UGUITools.AddChild<SImage>(gameObject);
 
         image.Atlas = atlas;
-        image.SpriteName = partialSprite;
+        image.SpriteName = selectedSprite;
+        image.raycastTarget = false;
         UGUITools.ResetGameObject(image.gameObject);
 
         return image;
     }
+    // Create STexture
+    public static STexture AddTexture(GameObject gameObject)
+    {
+        STexture texture = UGUITools.AddChild<STexture>(gameObject);
 
+        (texture as RawImage).raycastTarget = false;
+        UGUITools.ResetGameObject(texture.gameObject);
+
+        return texture;
+    }
     // Create SButton
     public static SButton AddButton(GameObject gameObject)
     {
-        var img = AddImage(gameObject);
-        var txt = AddText(img.gameObject);
+        var bg = AddImage(gameObject);
+        bg.rectTransform.sizeDelta = new Vector2(200, 60);
+
+        var txt = AddText(bg.gameObject);
         txt.rectTransform.anchorMin = Vector2.zero;
         txt.rectTransform.anchorMax = Vector2.one;
         txt.rectTransform.sizeDelta = Vector2.zero;
         txt.alignment = TextAnchor.MiddleCenter;
         txt.textStyle = textStyle;
-        img.gameObject.name = "SButton";
-        UGUITools.ResetGameObject(img.gameObject);
+        bg.gameObject.name = "SButton";
+        bg.raycastTarget = true;
+        UGUITools.ResetGameObject(bg.gameObject);
 
-        return img.gameObject.AddComponent<SButton>();
+        return bg.gameObject.AddComponent<SButton>();
     }
-
     // Create SMask
     public static SMask AddMask(GameObject gameObject)
     {
@@ -88,12 +99,11 @@ public class SUGUISetting:IEditorPrefs
         mask.raycastTarget = true;
         mask.rectTransform.anchorMin = Vector2.zero;
         mask.rectTransform.anchorMax = Vector2.one;
-        mask.rectTransform.sizeDelta = Vector2.zero;    
+        mask.rectTransform.sizeDelta = Vector2.zero;
         UGUITools.ResetGameObject(mask.gameObject);
 
         return mask;
     }
-
 
     // Get Canvas
     public static Canvas GetCanvas(GameObject gameObject = null)

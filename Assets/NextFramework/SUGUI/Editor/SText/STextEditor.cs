@@ -29,8 +29,9 @@ namespace NextFramework.SUGUI
             serializedObject.Update();
             // Text
             EditorGUILayout.PropertyField(m_Text);
-            //TextStyle
-            SUGUIEditorTool.DrawObjectField<TextStyle>(m_Style, "Text Style");
+
+            DrawTextStyle();
+            
             // Material & Color
             AppearanceControlsGUI();
             // Raycast Target
@@ -50,6 +51,14 @@ namespace NextFramework.SUGUI
             float h = fontDrawer.GetPropertyHeight(m_FontData, new GUIContent(""));
             Rect rect = EditorGUILayout.GetControlRect(false, h);
             fontDrawer.OnGUI(rect, m_FontData, new GUIContent(""));
+        }
+
+        //TextStyle
+        public virtual void DrawTextStyle()
+        {
+            SUGUIEditorTool.DrawObjectField<TextStyle>(m_Style, "Text Style");
+            if(m_Style.objectReferenceValue == null)
+                ((SText)target).textStyle = SUGUISetting.textStyle;
         }
     }
 
@@ -172,9 +181,6 @@ namespace NextFramework.SUGUI
         public virtual float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             Init(property);
-            //m_FontFieldfHeight = EditorGUI.GetPropertyHeight(m_Font);
-            //m_FontStyleHeight = EditorGUI.GetPropertyHeight(m_FontStyle);
-            //m_FontSizeHeight = EditorGUI.GetPropertyHeight(m_FontSize);
             m_LineSpacingHeight = EditorGUI.GetPropertyHeight(m_LineSpacing);
             m_EncodingHeight = EditorGUI.GetPropertyHeight(m_SupportEncoding);
             m_ResizeTextForBestFitHeight = EditorGUI.GetPropertyHeight(m_ResizeTextForBestFit);

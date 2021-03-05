@@ -11,12 +11,12 @@ namespace NextFramework.SUGUI
 {
     public class SpriteSelector : ScriptableWizard
     {
-        static public SpriteSelector instance;
+        public static SpriteSelector Singlton;
 
-        void OnEnable() { instance = this; }
-        void OnDisable() { instance = null; }
+        void OnEnable() { Singlton = this; }
+        void OnDisable() { Singlton = null; }
 
-        public delegate void Callback(string spriteFullPath);
+        public delegate void Callback(string spriteName);
 
         SerializedObject mObject;
         SerializedProperty mProperty;
@@ -105,11 +105,14 @@ namespace NextFramework.SUGUI
                                         }
 
                                         SUGUISetting.selectedSprite = texture.name;
-                                        if(instance!=null)
+                                        if(Singlton!=null)
                                         {
-                                            instance.Repaint();
+                                            Singlton.Repaint();
                                         }
-                                        if (mCallback != null) mCallback(spritePathList[offset]);
+                                        if (mCallback != null)
+                                        {
+                                            mCallback(texture.name);
+                                        }
                                     }
                                     else if (delta < 0.5f) close = true;
                                 }
@@ -181,7 +184,7 @@ namespace NextFramework.SUGUI
         /// Show the sprite selection wizard.
         /// </summary>
 
-        static public void ShowSelected()
+        public static void ShowSelected()
         {
             if (SUGUISetting.atlas != null)
             {
@@ -193,12 +196,12 @@ namespace NextFramework.SUGUI
         /// Show the sprite selection wizard.
         /// </summary>
 
-        static public void Show(SerializedObject ob, SerializedProperty pro, SpriteAtlas atlas)
+        public static void Show(SerializedObject ob, SerializedProperty pro, SpriteAtlas atlas)
         {
-            if (instance != null)
+            if (Singlton != null)
             {
-                instance.Close();
-                instance = null;
+                Singlton.Close();
+                Singlton = null;
             }
 
             if (ob != null && pro != null && atlas != null)
@@ -217,12 +220,12 @@ namespace NextFramework.SUGUI
         /// Show the selection wizard.
         /// </summary>
 
-        static public void Show(Callback callback)
+        public static void Show(Callback callback)
         {
-            if (instance != null)
+            if (Singlton != null)
             {
-                instance.Close();
-                instance = null;
+                Singlton.Close();
+                Singlton = null;
             }
 
             SpriteSelector comp = ScriptableWizard.DisplayWizard<SpriteSelector>("Select a Sprite");

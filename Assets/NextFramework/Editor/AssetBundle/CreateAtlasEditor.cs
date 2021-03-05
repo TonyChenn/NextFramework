@@ -71,7 +71,8 @@ public class CreateAtlasEditor
                 AssetDatabase.Refresh();
                 ABTool.Singlton.SetAssetBundleName(atlasName,
                     string.Format("ui/uiatlas/{0}", foldersArray[i].Name));
-                AssetDatabase.Refresh();
+
+                AssetDatabase.SaveAssets();
             }
             Debug.Log("<color='green'>图集生成成功！</color>");
         }

@@ -13,13 +13,13 @@ namespace NextFramework
     /// Tools for the editor
     /// </summary>
 
-    static public class TweenKitEditorTools
+    public static class TweenKitEditorTools
     {
         /// <summary>
         /// Unity 4.3 changed the way LookLikeControls works.
         /// </summary>
 
-        static public void SetLabelWidth(float width)
+        public static void SetLabelWidth(float width)
         {
             EditorGUIUtility.labelWidth = width;
         }
@@ -27,7 +27,7 @@ namespace NextFramework
         /// Draw a distinctly different looking header label
         /// </summary>
 
-        static public bool DrawMinimalisticHeader(string text)
+        public static bool DrawMinimalisticHeader(string text)
         {
             return DrawHeader(text, text, false, true);
         }
@@ -36,7 +36,7 @@ namespace NextFramework
         /// Draw a distinctly different looking header label
         /// </summary>
 
-        static public bool DrawHeader(string text)
+        public static bool DrawHeader(string text)
         {
             return DrawHeader(text, text, false, TweenKitSettings.minimalisticLook);
         }
@@ -45,7 +45,7 @@ namespace NextFramework
         /// Draw a distinctly different looking header label
         /// </summary>
 
-        static public bool DrawHeader(string text, string key)
+        public static bool DrawHeader(string text, string key)
         {
             return DrawHeader(text, key, false, TweenKitSettings.minimalisticLook);
         }
@@ -54,7 +54,7 @@ namespace NextFramework
         /// Draw a distinctly different looking header label
         /// </summary>
 
-        static public bool DrawHeader(string text, bool detailed)
+        public static bool DrawHeader(string text, bool detailed)
         {
             return DrawHeader(text, text, detailed, !detailed);
         }
@@ -63,7 +63,7 @@ namespace NextFramework
         /// Draw a distinctly different looking header label
         /// </summary>
 
-        static public bool DrawHeader(string text, string key, bool forceOn, bool minimalistic)
+        public static bool DrawHeader(string text, string key, bool forceOn, bool minimalistic)
         {
             bool state = EditorPrefs.GetBool(key, true);
 
@@ -103,7 +103,7 @@ namespace NextFramework
         /// Begin drawing the content area.
         /// </summary>
 
-        static public void BeginContents()
+        public static void BeginContents()
         {
             BeginContents(TweenKitSettings.minimalisticLook);
         }
@@ -111,16 +111,16 @@ namespace NextFramework
         private static bool mEndHorizontal = false;
 
     #if UNITY_4_7 || UNITY_5_5 || UNITY_5_6
-	    static public string textArea = "AS TextArea";
+	    public static string textArea = "AS TextArea";
     #else
-        static public string textArea = "TextArea";
+        public static string textArea = "TextArea";
     #endif
 
         /// <summary>
         /// Begin drawing the content area.
         /// </summary>
 
-        static public void BeginContents(bool minimalistic)
+        public static void BeginContents(bool minimalistic)
         {
             if (!minimalistic)
             {
@@ -142,7 +142,7 @@ namespace NextFramework
         /// End drawing the content area.
         /// </summary>
 
-        static public void EndContents()
+        public static void EndContents()
         {
             GUILayout.Space(3f);
             GUILayout.EndVertical();
@@ -160,7 +160,7 @@ namespace NextFramework
         /// Draw a list of fields for the specified list of delegates.
         /// </summary>
 
-        static public void DrawEvents(string text, Object undoObject, List<EventDelegate> list)
+        public static void DrawEvents(string text, Object undoObject, List<EventDelegate> list)
         {
             DrawEvents(text, undoObject, list, null, null, false);
         }
@@ -169,7 +169,7 @@ namespace NextFramework
         /// Draw a list of fields for the specified list of delegates.
         /// </summary>
 
-        static public void DrawEvents(string text, Object undoObject, List<EventDelegate> list, bool minimalistic)
+        public static void DrawEvents(string text, Object undoObject, List<EventDelegate> list, bool minimalistic)
         {
             DrawEvents(text, undoObject, list, null, null, minimalistic);
         }
@@ -178,7 +178,7 @@ namespace NextFramework
         /// Draw a list of fields for the specified list of delegates.
         /// </summary>
 
-        static public void DrawEvents(string text, Object undoObject, List<EventDelegate> list, string noTarget, string notValid, bool minimalistic)
+        public static void DrawEvents(string text, Object undoObject, List<EventDelegate> list, string noTarget, string notValid, bool minimalistic)
         {
             if (!TweenKitEditorTools.DrawHeader(text, text, false, minimalistic)) return;
 
@@ -200,9 +200,9 @@ namespace NextFramework
         /// Create an undo point for the specified object.
         /// </summary>
 
-        static public void RegisterUndo(string name, Object obj) { if (obj != null) UnityEditor.Undo.RecordObject(obj, name); }
+        public static void RegisterUndo(string name, Object obj) { if (obj != null) UnityEditor.Undo.RecordObject(obj, name); }
 
-        static public void DrawPadding()
+        public static void DrawPadding()
         {
             if (!TweenKitSettings.minimalisticLook)
                 GUILayout.Space(18f);
@@ -211,7 +211,7 @@ namespace NextFramework
         /// <summary>
         /// Load the asset at the specified path.
         /// </summary>
-        static public Object LoadAsset(string path)
+        public static Object LoadAsset(string path)
         {
             if (string.IsNullOrEmpty(path)) return null;
             return AssetDatabase.LoadMainAssetAtPath(path);
@@ -219,7 +219,7 @@ namespace NextFramework
         /// <summary>
         /// Convenience function to load an asset of specified type, given the full path to it.
         /// </summary>
-        static public T LoadAsset<T>(string path) where T : Object
+        public static T LoadAsset<T>(string path) where T : Object
         {
             Object obj = LoadAsset(path);
             if (obj == null) return null;

@@ -32,31 +32,31 @@ namespace NextFramework
         /// If you want the property drawer to limit its selection list to values of specified type, set this to something other than 'void'.
         /// </summary>
 
-        static public Type filter = typeof(void);
+        public static Type filter = typeof(void);
 
         /// <summary>
         /// Whether it's possible to convert between basic types, such as int to string.
         /// </summary>
 
-        static public bool canConvert = true;
+        public static bool canConvert = true;
 
         /// <summary>
         /// Whether the property should be readable. Used to filter the property selection list.
         /// </summary>
 
-        static public bool mustRead = false;
+        public static bool mustRead = false;
 
         /// <summary>
         /// Whether the property should be writable. Used to filter the property selection list.
         /// </summary>
 
-        static public bool mustWrite = false;
+        public static bool mustWrite = false;
 
         /// <summary>
         /// Collect a list of usable properties and fields.
         /// </summary>
 
-        static public List<Entry> GetProperties(GameObject target, bool read, bool write)
+        public static List<Entry> GetProperties(GameObject target, bool read, bool write)
         {
             Component[] comps = target.GetComponents<Component>();
 
@@ -127,7 +127,7 @@ namespace NextFramework
         /// Convert the specified list of delegate entries into a string array.
         /// </summary>
 
-        static public string[] GetNames(List<Entry> list, string choice, out int index)
+        public static string[] GetNames(List<Entry> list, string choice, out int index)
         {
             index = 0;
             string[] names = new string[list.Count + 1];

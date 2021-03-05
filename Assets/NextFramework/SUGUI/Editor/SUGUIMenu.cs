@@ -13,18 +13,25 @@ namespace NextFramework.SUGUI
         public static SText CreateSText()
         {
             SText txt = SUGUISetting.AddText(getParent());
-            txt.rectTransform.sizeDelta = new Vector2(200, 120);
+            txt.alignment = TextAnchor.MiddleLeft;
+            txt.rectTransform.sizeDelta = new Vector2(200, 60);
             return txt;
         }
 
         [MenuItem("NextFramework/SUGUI/Create SImage", false, 12)]
-        public static Image CreateSImage()
+        public static SImage CreateSImage()
         {
-            Image image = SUGUISetting.AddImage(getParent());
+            SImage image = SUGUISetting.AddImage(getParent());
             return image;
         }
+        [MenuItem("NextFramework/SUGUI/Create STexture", false, 13)]
+        public static STexture CreateSTexture()
+        {
+            STexture texture = SUGUISetting.AddTexture(getParent());
+            return texture;
+        }
 
-        [MenuItem("NextFramework/SUGUI/Create SButton", false, 13)]
+        [MenuItem("NextFramework/SUGUI/Create SButton", false, 14)]
         public static SButton CreateSButton()
         {
             SButton btn = SUGUISetting.AddButton(getParent());
@@ -32,44 +39,44 @@ namespace NextFramework.SUGUI
             return btn;
         }
 
-        [MenuItem("NextFramework/SUGUI/Create SInputFied", false, 14)]
+        [MenuItem("NextFramework/SUGUI/Create SInputFied", false, 15)]
         public static void CreateSInputFied()
         {
 
         }
 
-        [MenuItem("NextFramework/SUGUI/Create SListView", false, 15)]
+        [MenuItem("NextFramework/SUGUI/Create SListView", false, 16)]
         public static void CreateSListView()
         {
 
         }
 
-        [MenuItem("NextFramework/SUGUI/Create SGridView", false, 16)]
+        [MenuItem("NextFramework/SUGUI/Create SGridView", false, 17)]
         public static void CreateSGridView()
         {
 
         }
 
-        [MenuItem("NextFramework/SUGUI/Create SPageView", false, 6)]
+        [MenuItem("NextFramework/SUGUI/Create SPageView", false, 18)]
         public static void CreateSPageView()
         {
 
         }
 
-        [MenuItem("NextFramework/SUGUI/Create SChatView", false, 6)]
+        [MenuItem("NextFramework/SUGUI/Create SChatView", false, 19)]
         public static void CreateSChatView()
         {
 
         }
-        [MenuItem("NextFramework/SUGUI/Create SMask", false, 6)]
-        public static void CreateMask()
-        {
-            SUGUISetting.AddMask(getParent());
-        }
-        [MenuItem("NextFramework/SUGUI/Create Canvas", false, 11)]
+        [MenuItem("NextFramework/SUGUI/Create Canvas", false, 20)]
         public static void CreateCanvas()
         {
             SUGUISetting.AddCanvas(null);
+        }
+        [MenuItem("NextFramework/SUGUI/Create SMask", false, 21)]
+        public static void CreateMask()
+        {
+            SUGUISetting.AddMask(getParent());
         }
 
         public static void SetParentAndAlign(GameObject parent, GameObject child)

@@ -284,7 +284,7 @@ namespace NextFramework.SUGUI
 
             m_SpriteName.stringValue = spriteName;
             serializedObject.ApplyModifiedProperties();
-            current.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteName);
+            current.sprite = (m_SpriteAtlas.objectReferenceValue as SpriteAtlas).GetSprite(spriteName);
 #if UNITY_EDITOR
             if (serializedObject.targetObject != null)
             {

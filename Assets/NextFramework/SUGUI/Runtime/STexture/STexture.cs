@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test : MonoBehaviour
+namespace NextFramework.SUGUI
 {
-    [SerializeField] Image Btn;
-    void Start()
+    public class STexture : RawImage
     {
-        Btn.SetActive(false);
+
     }
 }
+
