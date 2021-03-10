@@ -23,18 +23,19 @@ namespace NextFramework.SUGUI
         /// <summary>
         /// 是否开启点击缩放
         /// </summary>
-        public bool TweenScale
-        {
-            get { return m_TweenScale; }
-            set
-            {
-                ButtonScale compoment = GetComponent<ButtonScale>();
-                if (value && compoment == null)
-                    gameObject.AddComponent<ButtonScale>();
+        //public bool TweenScale
+        //{
+        //    get { return m_TweenScale; }
+        //    set
+        //    {
+        //        m_TweenScale = value;
+        //        ButtonScale compoment = GetComponent<ButtonScale>();
+        //        if (m_TweenScale && compoment == null)
+        //            gameObject.AddComponent<ButtonScale>();
 
-                if (compoment) compoment.enabled = value;
-            }
-        }
+        //        if (compoment) compoment.enabled = value;
+        //    }
+        //}
 
         #region IPointerClickHandler
         public void OnPointerClick(PointerEventData eventData)

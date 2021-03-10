@@ -16,11 +16,13 @@ namespace NextFramework.SUGUI
     [CustomEditor(typeof(SImage), true)]
     [CanEditMultipleObjects]
     /// <summary>
-    ///   Custom Editor for the Image Component.
+    ///   Custom Editor for the SImage Component.
     ///   Extend this class to write a custom editor for a component derived from SImage.
     /// </summary>
     public class SImageEditor : GraphicEditor
     {
+        SerializedProperty m_CullMask;
+
         SerializedProperty m_SpriteAtlas;
         SerializedProperty m_SpriteName;
 
@@ -46,6 +48,7 @@ namespace NextFramework.SUGUI
         protected override void OnEnable()
         {
             base.OnEnable();
+            m_CullMask = serializedObject.FindProperty("m_CullMask");
             m_SpriteAtlas = serializedObject.FindProperty("m_SpriteAtlas");
             m_SpriteName = serializedObject.FindProperty("m_SpriteName");
 
@@ -92,6 +95,8 @@ namespace NextFramework.SUGUI
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
+
+            EditorGUILayout.PropertyField(m_CullMask);
 
             SpriteGUI();
             AppearanceControlsGUI();
@@ -259,13 +264,6 @@ namespace NextFramework.SUGUI
             //SpriteDrawUtility.DrawSprite(sf, rect, image.canvasRenderer.GetColor());
         }
 
-        /// <summary>
-        /// A string containing the Image details to be used as a overlay on the component Preview.
-        /// </summary>
-        /// <returns>
-        /// The Image details.
-        /// </returns>
-
         public override string GetInfoString()
         {
             Image image = target as Image;
@@ -284,13 +282,11 @@ namespace NextFramework.SUGUI
 
             m_SpriteName.stringValue = spriteName;
             serializedObject.ApplyModifiedProperties();
-            current.sprite = (m_SpriteAtlas.objectReferenceValue as SpriteAtlas).GetSprite(spriteName);
-#if UNITY_EDITOR
+            current.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteName);
             if (serializedObject.targetObject != null)
             {
                 UnityEditor.EditorUtility.SetDirty(serializedObject.targetObject);
             }
-#endif
             SUGUISetting.selectedSprite = spriteName;
         }
 

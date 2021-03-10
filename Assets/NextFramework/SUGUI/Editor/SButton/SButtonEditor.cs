@@ -24,9 +24,6 @@ namespace NextFramework.SUGUI
             base.OnEnable();
             Current = ((SButton)target).gameObject;
             BtnScaleCompoment = Current.GetComponent<ButtonScale>();
-            if (BtnScaleCompoment == null)
-                BtnScaleCompoment = Current.AddComponent<ButtonScale>();
-
 
             m_TweenScale = serializedObject.FindProperty("m_TweenScale");
 
@@ -43,8 +40,7 @@ namespace NextFramework.SUGUI
             EditorGUILayout.PropertyField(m_TweenScale);
             bool tween = SUGUIEditorTool.GetBoolPropertyValue(m_TweenScale);
 
-            if (BtnScaleCompoment != null)
-                BtnScaleCompoment.enabled = tween;
+            if (tween && BtnScaleCompoment == null) Current.AddComponent<ButtonScale>();
 
             EditorGUILayout.PropertyField(m_OnClickProperty);
             //EditorGUILayout.PropertyField(m_OnDoubleClickProperty);

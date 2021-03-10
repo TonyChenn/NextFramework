@@ -95,7 +95,7 @@ namespace NextFramework.SUGUI
                                     float delta = Time.realtimeSinceStartup - mClickTime;
                                     mClickTime = Time.realtimeSinceStartup;
 
-                                    if (SUGUISetting.selectedSprite != texture.name)
+                                    if (SUGUISetting.selectedSprite != spritePathList[offset])
                                     {
                                         if (mSprite != null)
                                         {
@@ -104,14 +104,14 @@ namespace NextFramework.SUGUI
                                             EditorUtility.SetDirty(mSprite.gameObject);
                                         }
 
-                                        SUGUISetting.selectedSprite = texture.name;
+                                        SUGUISetting.selectedSprite = spritePathList[offset];
                                         if(Singlton!=null)
                                         {
                                             Singlton.Repaint();
                                         }
                                         if (mCallback != null)
                                         {
-                                            mCallback(texture.name);
+                                            mCallback(spritePathList[offset]);
                                         }
                                     }
                                     else if (delta < 0.5f) close = true;
