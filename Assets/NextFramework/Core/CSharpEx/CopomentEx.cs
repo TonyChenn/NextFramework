@@ -6,7 +6,9 @@ public static class ComponentEx
 {
     public static T SetActive<T>(this T component, bool show) where T : Component
     {
-        component.gameObject.SetActive(show);
+        if(component!=null)
+            component.gameObject.SetActive(show);
+
         return component;
     }
     public static bool IsActive<T>(this T component) where T : Component
@@ -16,7 +18,9 @@ public static class ComponentEx
 
     public static T SetEnable<T>(this T behavior, bool enable) where T : Behaviour
     {
-        behavior.enabled = enable;
+        if(behavior!=null)
+            behavior.enabled = enable;
+
         return behavior;
     }
 

@@ -31,7 +31,7 @@ public class AudioManger
 
     private AudioManger()
     {
-        Transform audioTrans = GameObject.Find("AudioObject").transform;
+        Transform audioTrans = new GameObject("AudioObject").transform;
         //BGM
         bgmObject = new GameObject();
         bgmObject.transform.SetParent(audioTrans);
@@ -60,25 +60,66 @@ public class AudioManger
         effectASList.Add(AS_Effect);
     }
 
-    AudioSource CreateNewUISource()
+    /// <summary>
+    /// 创建AudioSourse
+    /// </summary>
+    AudioSource CreateAudioSource(AudioType audioType)
     {
         AudioSource _as = uiObject.AddComponent<AudioSource>();
         _as.loop = false;
         _as.playOnAwake = false;
-        _as.volume = AS_UI.volume;
-        uiASList.Add(_as);
-
+        if (audioType == AudioType.UI)
+        {
+            _as.volume = AS_UI.volume;
+            uiASList.Add(_as);
+        }
+        else
+        {
+            _as.volume = AS_Effect.volume;
+            effectASList.Add(_as);
+        }
         return _as;
     }
-    AudioSource CreateNewEffectSource()
+    /// <summary>
+    /// 获取AudioSourse
+    /// </summary>
+    AudioSource GetAudioSource(AudioType type)
     {
-        AudioSource _as = effectObject.AddComponent<AudioSource>();
-        _as.loop = false;
-        _as.playOnAwake = false;
-        _as.volume = AS_Effect.volume;
-        uiASList.Add(_as);
+        AudioSource source = null;
 
-        return _as;
+        if (type == AudioType.BGM)
+        {
+            trackBGMStartTime = AudioSettings.dspTime + 1;
+            source = AS_BGM;
+        }
+        else if (type == AudioType.UI)
+        {
+            for (int i = 0; i < uiASList.Count; i++)
+            {
+                if (!uiASList[i].isPlaying)
+                {
+                    source = uiASList[i];
+                    break;
+                }
+            }
+            if (source == null)
+                source = CreateAudioSource(type);
+        }
+        else if (type == AudioType.Effect)
+        {
+            for (int i = 0; i < effectASList.Count; i++)
+            {
+                if (!effectASList[i].isPlaying)
+                {
+                    source = effectASList[i];
+                    break;
+                }
+            }
+            if (source == null)
+                source = CreateAudioSource(type);
+        }
+
+        return source;
     }
 
 
@@ -140,68 +181,6 @@ public class AudioManger
     }
 
     double trackBGMStartTime = 0f;
-    public void PlayAudioClip(AudioType type, AudioClip clip)
-    {
-        AudioSource source = null;
-        if(type==AudioType.BGM)
-        {
-            trackBGMStartTime = AudioSettings.dspTime + 1;
-            source = AS_BGM;
-        }
-        else if(type==AudioType.UI)
-        {
-            for (int i = 0; i < uiASList.Count; i++)
-            {
-                if (!uiASList[i].isPlaying)
-                {
-                    source = uiASList[i];
-                    break;
-                }
-            }
-            if (source == null)
-                source = CreateNewUISource();
-        }
-        else if(type==AudioType.Effect)
-        {
-            for (int i = 0; i < effectASList.Count; i++)
-            {
-                if (!effectASList[i].isPlaying)
-                {
-                    source = effectASList[i];
-                    break;
-                }
-            }
-            if (source == null)
-                source = CreateNewEffectSource();
-        }
-        if(source!=null)
-        {
-            source.Stop();
-            source.time = 0;
-            source.clip = clip;
-            if (type == AudioType.BGM)
-                source.PlayScheduled(trackBGMStartTime);
-            else
-                source.Play();
-        }
-    }
-    public void OnPlayUIButtonSound(UI_SoundType type)
-    {
-        AudioClip clip = null;
-        if(type==UI_SoundType.common)
-        {
-            if(audioClipDict.ContainsKey("CommonClickSound"))
-            {
-                clip = audioClipDict["CommonClickSound"];
-            }
-            else
-            {
-                clip = Resources.Load("Audio/UI/Button") as AudioClip;
-            }
-        }
-        if (clip != null)
-            Singlton.PlayAudioClip(AudioType.UI, clip);
-    }
 
     public void StopAudio(AudioType type)
     {
@@ -265,6 +244,54 @@ public class AudioManger
         trackBGMStartTime = AudioSettings.dspTime - time;
     }
 
+
+    #region Custom Method
+    public void PlayAudio(AudioType audioType, string name)
+    {
+        switch (audioType)
+        {
+            case AudioType.BGM:
+                PlayBGM(name);
+                break;
+            case AudioType.UI:
+                PlayUI(name);
+                break;
+            case AudioType.Effect:
+                PlayEffect(name);
+                break;
+            default:
+                break;
+        }
+    }
+    public void PlayBGM(string name)
+    {
+
+    }
+    public void PlayUI(string name)
+    {
+
+    }
+    public void PlayEffect(string name)
+    {
+
+    }
+
+    public void PlayAudioClip(AudioType type, AudioClip clip)
+    {
+        AudioSource source = GetAudioSource(type);
+
+        if (source != null)
+        {
+            source.Stop();
+            source.time = 0;
+            source.clip = clip;
+            if (type == AudioType.BGM)
+                source.PlayScheduled(trackBGMStartTime);
+            else
+                source.Play();
+        }
+    }
+    #endregion
 }
 public enum AudioType
 {

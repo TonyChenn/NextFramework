@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace NextFramework
@@ -37,6 +36,9 @@ namespace NextFramework
     {
         public static T CreateSingleton<T>() where T : class, ISingleton
         {
+            /**
+             * 减少使用反射
+             * 
             // 获取私有构造函数
             var ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -51,7 +53,10 @@ namespace NextFramework
             // 通过构造函数，常见实例
             var retInstance = ctor.Invoke(null) as T;
             retInstance.InitSingleton();
+            */
 
+            T retInstance = (T)Activator.CreateInstance(typeof(T), true);
+            retInstance.InitSingleton();
             return retInstance;
         }
     }

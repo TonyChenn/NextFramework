@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.U2D;
-using UnityEngine.UI;
 
 namespace NextFramework.SUGUI
 {

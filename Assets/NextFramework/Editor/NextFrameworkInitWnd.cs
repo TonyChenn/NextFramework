@@ -95,6 +95,13 @@ namespace NextFramework
             EditorUtility.DisplayDialog("已取消MipMaps列表", builder.ToString(), "好的");
         }
 
+
+        [MenuItem("NextFramework/快速打开路径/Persistent Path")]
+        static void openPersistentPath()
+        {
+            EditorUtility.RevealInFinder(Application.persistentDataPath);
+        }
+
         static bool isPicture(string path)
         {
             if(File.Exists(path))

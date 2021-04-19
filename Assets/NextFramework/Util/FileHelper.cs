@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using NextFramework;
 using System.IO;
 
 public static class FileHelper
@@ -154,10 +154,37 @@ public static class FolderHelper
         }
         return null;
     }
+
+    /// <summary>
+    /// 返回路径的最后一个文件夹名称
+    /// </summary>
+    public static string GetFolderName(string path)
+    {
+        if (ExistFolder(path))
+            return Path.GetFileNameWithoutExtension(path);
+
+        string[] temp = path.Replace("\\", "/").Split('/');
+        return temp[temp.Length - 1];
+    }
 }
 
 public static class PathHelper
 {
+    public static string CombinePath(params string[] paths)
+    {
+        var builder = StringBuilderPool.Alloc();
+        for (int i = 0, iMax = paths.Length; i < iMax; i++)
+        {
+            builder.Append(paths[i].GetStandardPath().TrimStart('/'));
+            if (i != iMax-1)
+                builder.Append("/");
+        }
+        string result = builder.ToString();
+        builder.Recycle();
+
+        return result;
+    }
+
     /// <summary>
     /// 获取标准转义符的地址
     /// </summary>

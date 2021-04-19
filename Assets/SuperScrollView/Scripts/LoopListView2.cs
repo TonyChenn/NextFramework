@@ -185,21 +185,33 @@ namespace SuperScrollView
                 mIsForceSnapTo = false;
             }
         }
-
-        Dictionary<string, ItemPool> mItemPoolDict = new Dictionary<string, ItemPool>();
-        List<ItemPool> mItemPoolList = new List<ItemPool>();
         [SerializeField]
         List<ItemPrefabConfData> mItemPrefabDataList = new List<ItemPrefabConfData>();
-
         [SerializeField]
         private ListItemArrangeType mArrangeType = ListItemArrangeType.TopToBottom;
         public ListItemArrangeType ArrangeType { get { return mArrangeType; } set { mArrangeType = value; } }
+        [SerializeField]
+        bool mSupportScrollBar = true;
 
-        List<LoopListViewItem2> mItemList = new List<LoopListViewItem2>();
-        RectTransform mContainerTrans;
+
         ScrollRect mScrollRect = null;
+        RectTransform mContainerTrans;
         RectTransform mScrollRectTransform = null;
         RectTransform mViewPortRectTransform = null;
+
+
+
+
+
+        Dictionary<string, ItemPool> mItemPoolDict = new Dictionary<string, ItemPool>();
+        List<ItemPool> mItemPoolList = new List<ItemPool>();
+        List<LoopListViewItem2> mItemList = new List<LoopListViewItem2>();
+
+
+
+
+
+
         float mItemDefaultWithPaddingSize = 20;
         int mItemTotalCount = 0;
         bool mIsVertList = false;
@@ -215,8 +227,6 @@ namespace SuperScrollView
         float mDistanceForNew0 = 200;
         float mDistanceForRecycle1 = 300;
         float mDistanceForNew1 = 200;
-        [SerializeField]
-        bool mSupportScrollBar = true;
         bool mIsDraging = false;
         PointerEventData mPointerEventData = null;
         public System.Action mOnBeginDragAction = null;

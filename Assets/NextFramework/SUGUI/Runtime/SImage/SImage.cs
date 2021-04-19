@@ -69,8 +69,10 @@ namespace NextFramework.SUGUI
 
         protected override void OnPopulateMesh(VertexHelper toFill)
         {
-            if (!m_CullMask && color.a > 0.01 && overrideSprite != null)
-                base.OnPopulateMesh(toFill);
+            base.OnPopulateMesh(toFill);
+
+            //if (!m_CullMask && color.a > 0.01 && overrideSprite != null)
+                //base.OnPopulateMesh(toFill);
         }
 
         public override void SetNativeSize()
