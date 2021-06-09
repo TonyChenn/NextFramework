@@ -1,5 +1,0 @@
--- 加载所有补丁
-local patchs=require("patch_list")
-for _,item ipairs(patchs) do
-	require(item)
-end

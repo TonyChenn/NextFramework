@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 1319016506
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: table/test.u3d
+      Dependencies: {}
+    Info_1:
+      Name: font/fzcuqian.u3d
+      Dependencies: {}
+    Info_2:
+      Name: test/bg_3.u3d
+      Dependencies: {}
+    Info_3:
+      Name: ui/uiatlas/shop.u3d
+      Dependencies: {}
+    Info_4:
+      Name: ui/uiatlas/common.u3d
+      Dependencies: {}
+    Info_5:
+      Name: ui/uiprefab/pkg_ui_message.u3d
+      Dependencies:
+        Dependency_0: font/fzcuqian.u3d
+        Dependency_1: ui/uiatlas/common.u3d

@@ -1,0 +1,59 @@
+ManifestFileVersion: 0
+CRC: 3083817338
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: cd7ea2b7b0c5326e968fa28140540075
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c058e3cd095c1a6dfb43336d10cad976
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: f9d7b0107cebb224992e938d580650ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b3ec3aa22b964a14cbe6bc0bd41d2f55, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: db45a6f2c6a354e4594c1c96a52f4e80, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7d5e1593dd186414b812974c60d25b32, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 631c75747a3915749bfa2129f5478cae, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4d93e1878d49d1c47b2f422a83d96229, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 537677878ce92b84ab6b9f33372b1ef4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d1b003d710b68f941bc9b78c425303d6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a4f10588107eb5b45b8e36861cb188d9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a50f1a9dd1ff7c647bc27061255a11df, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d400cdad8690e4f4194c0fc373885635, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 062a1c1e09f2fca43891b60257dcffc8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/UI/UIPrefab/pkg_ui_message/UI_MessageBox.prefab
+- Assets/UI/UIPrefab/pkg_ui_message/UI_ToastPanel.prefab
+- Assets/UI/UIPrefab/pkg_ui_message/UI_WaitPanel.prefab
+Dependencies:
+- F:/Privite/NextFrameWork/Unity/Assets/../../AssetBundleDatabase/StandaloneWindows/font/fzcuqian.u3d
+- F:/Privite/NextFrameWork/Unity/Assets/../../AssetBundleDatabase/StandaloneWindows/ui/uiatlas/common.u3d
