@@ -6,6 +6,7 @@ public class GameConfig : MonoBehaviour
 {
     string ftpUrl;
 
+    public bool HotPatch = false;
     public bool UseLocalAsset = true;
     [SerializeField] PackageEnum packageEnum = PackageEnum.Dev;
 
@@ -22,7 +23,7 @@ public class GameConfig : MonoBehaviour
 
     public bool HotPatching
     {
-        get { return Singlton ? Singlton.packageEnum != PackageEnum.Dev : true; }
+        get { return Singlton ? Singlton.HotPatch : true; }
     }
 
     public string FtpUrl

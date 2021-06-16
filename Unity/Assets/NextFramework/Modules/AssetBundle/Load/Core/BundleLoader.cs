@@ -93,21 +93,21 @@ namespace Common
             s_getPathResult.Append("file://");
             s_getPathResult.Append(Application.streamingAssetsPath);
             s_getPathResult.Append("/");
-            s_getPathResult.Append(path);
+            s_getPathResult.Append(path.TrimStart('/'));
             s_tmpPath = s_getPathResult.ToString();
 #elif UNITY_IOS
             s_getPathResult.Length = 0;
             s_getPathResult.Append("file://");
             s_getPathResult.Append(Application.dataPath);
             s_getPathResult.Append("/Raw/");
-            s_getPathResult.Append(path);
+            s_getPathResult.Append(path.TrimStart('/'));
             s_tmpPath = s_getPathResult.ToString();
 #elif UNITY_ANDROID
             s_getPathResult.Length = 0;
             s_getPathResult.Append("jar:file://");
             s_getPathResult.Append(Application.dataPath);
             s_getPathResult.Append("!/assets/");
-            s_getPathResult.Append(path);
+            s_getPathResult.Append(path.TrimStart('/'));
             s_tmpPath = s_getPathResult.ToString();
 #endif
             return s_tmpPath;

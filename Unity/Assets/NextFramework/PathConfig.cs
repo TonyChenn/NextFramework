@@ -50,6 +50,7 @@ public class PathConfig
     public static string UIPanelsJsonPath = NextFrameworkPath + "/UIManger/panels.json";
 
 
+
     #region 需要打AB包
 
     /// <summary>
@@ -72,10 +73,16 @@ public class PathConfig
     /// <summary>
     /// UITexture文件夹
     /// </summary>
-    public static string UITextureFolder = "UI/UITexture";
+    public static string UITextureFolder = "/UI/UITexture";
     /// <summary>
     /// UIAtlas文件夹
     /// </summary>
     public static string UIAtlasFolder = RootPath + "/UI/UIAtlas";
+    public static string UIAtlasAbsPath = "/UI/UIAtlas";
+
+    /// <summary>
+    /// 音频总目录
+    /// </summary>
+    public static string AudioAbsFolder = "/Audio";
     #endregion
 }

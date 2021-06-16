@@ -35,7 +35,7 @@ namespace Common
         {
             retryDownloadCount = 0;
 
-            if (GameConfig.Singlton.HotPatching && BundleDownloader.Singlton.SingleABNeedDownload(AssetPath))
+            if (GameConfig.Singlton!=null && GameConfig.Singlton.HotPatching && BundleDownloader.Singlton.SingleABNeedDownload(AssetPath))
             {
                 // 如果此资源已经在下载过程中，则把回调注册进去
                 BundleDownloader.Singlton.DownloadSingleAB(AssetPath, OnDownloadFinished);

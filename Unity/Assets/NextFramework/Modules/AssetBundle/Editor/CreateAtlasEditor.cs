@@ -35,6 +35,7 @@ public class CreateAtlasEditor
                     string atlasName = $"{atlasPath}/{foldersArray[i].Name}.spriteatlas";
 
                     var atlas = mGenAtlas();
+                    atlas.SetIncludeInBuild(false);
                     atlas.Add(spriteList.ToArray());
 
                     AssetDatabase.CreateAsset(atlas, atlasName);
